@@ -83,14 +83,19 @@ class ItemCloseToggleRedirectView(LoginRequiredMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         item = get_object_or_404(Item, pk=kwargs['pk'])
-        if item.user != self.request.user:
+        user = self.request.user
+
+        # Accept if it isn't the owner
+        if item.user != user or not item.delivered:
             if not item.closed:
                 item.closed = True
-                item.closed_by = self.request.user
-            else:
+                item.closed_by = user
+            # Open again if the user was the one who closed it
+            elif item.closed_by == user:
                 item.closed = False
                 item.closed_by = None
             item.save()
+        
         return super().get_redirect_url(*args, **kwargs)
 
 
