@@ -19,11 +19,13 @@ class ItemsListView(LoginRequiredMixin, ListView):
         return Item.objects.filter(delivered=False)
 
 
-class ItemDetailView(DetailView):
+class ItemDetailView(LoginRequiredMixin, DetailView):
+    login_url = reverse_lazy('accounts:login')
     model = Item
 
 
-class ItemCreateView(CreateView):
+class ItemCreateView(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('accounts:login')
     model = Item
     fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
 
