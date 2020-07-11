@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 
 from .models import Item
 
@@ -40,3 +41,9 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('accounts:login')
     model = Item
     fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
+
+    def dispatch(self, *args, **kwargs):
+        """Don't let users update items if they've been closed already."""
+        if self.get_object().closed:
+            return redirect(reverse_lazy('items:items-list'))
+        return super().dispatch(*args, **kwargs)
