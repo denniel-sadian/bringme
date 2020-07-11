@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
+from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 
 from .models import Item
@@ -16,6 +17,10 @@ class ItemsListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Item.objects.filter(delivered=False)
+
+
+class ItemDetailView(DetailView):
+    model = Item
 
 
 class ItemCreateView(CreateView):
