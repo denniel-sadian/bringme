@@ -70,10 +70,11 @@ class ItemDeleteView(LoginRequiredMixin, DeleteView):
         return super().dispatch(*args, **kwargs)
 
 
-class ItemCloseToggleRedirectView(RedirectView):
+class ItemCloseToggleRedirectView(LoginRequiredMixin, RedirectView):
+    login_url = reverse_lazy('accounts:login')
     permanent = False
     query_string = True
-    pattern_name = 'item-detail'
+    pattern_name = 'items:item-detail'
 
     def get_redirect_url(self, *args, **kwargs):
         item = get_object_or_404(Item, pk=kwargs['pk'])
