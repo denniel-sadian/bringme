@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.views.generic import ListView
+from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 
 from .models import Item
@@ -15,3 +16,12 @@ class ItemsListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Item.objects.filter(delivered=False)
+
+
+class ItemCreateView(CreateView):
+    model = Item
+    fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
