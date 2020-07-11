@@ -1,5 +1,5 @@
 <ul>
 {% for i in items %}
-<li>{{ i.name }}</li>
+<li>{{ i.name }} by {{ i.user.name }}. Closed by {{ i.closed_by.name }}.</li>
 {% endfor %}
 </ul>
