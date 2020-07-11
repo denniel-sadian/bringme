@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from django_resized import ResizedImageField
 
@@ -16,3 +17,6 @@ class Item(models.Model):
     delivered = models.BooleanField(default=False)
     closed = models.BooleanField(default=False)
     closed_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+
+    def get_absolute_url(self):
+        return reverse('items:item-detail', kwargs={'pk': self.pk})
