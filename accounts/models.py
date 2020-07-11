@@ -28,3 +28,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    def save(self, *args, **kwargs):
+        self.address = self.address.upper().replace(' ', '')
+        super().save(*args, **kwargs)
