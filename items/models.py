@@ -1,3 +1,17 @@
 from django.db import models
 
-# Create your models here.
+from django_resized import ResizedImageField
+
+from accounts.models import CustomUser
+
+
+class Item(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    expected_price = models.IntegerField(default=0)
+    expected_store = models.CharField(max_length=255)
+    date = models.DateTimeField(auto_now_add=True)
+    delivered = models.BooleanField(default=False)
+    closed = models.BooleanField(default=False)
+    closed_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
