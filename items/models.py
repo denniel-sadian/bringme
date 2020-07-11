@@ -6,7 +6,7 @@ from accounts.models import CustomUser
 
 
 class Item(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='items')
     name = models.CharField(max_length=255)
     description = models.TextField()
     expected_price = models.IntegerField(default=0)
@@ -14,4 +14,4 @@ class Item(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     delivered = models.BooleanField(default=False)
     closed = models.BooleanField(default=False)
-    closed_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    closed_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
