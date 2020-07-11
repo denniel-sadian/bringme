@@ -22,7 +22,9 @@ class ItemsListView(LoginRequiredMixin, ListView):
     context_object_name = 'items'
 
     def get_queryset(self):
-        return Item.objects.filter(delivered=False)
+        user_address = self.request.user.address
+        return Item.objects.filter(user__address__icontains=user_address,
+                                   delivered=False)
 
 
 class ItemDetailView(LoginRequiredMixin, DetailView):
