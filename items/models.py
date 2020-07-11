@@ -9,6 +9,7 @@ class Item(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='items')
     name = models.CharField(max_length=255)
     description = models.TextField()
+    photo = ResizedImageField(size=[600, 600], upload_to='items', force_format='PNG')
     expected_price = models.IntegerField(default=0)
     expected_store = models.CharField(max_length=255)
     date = models.DateTimeField(auto_now_add=True)
