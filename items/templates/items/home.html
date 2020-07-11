@@ -1,5 +1,5 @@
 <h1>Welcome to BringMe!</h1>
 
 {% if user.is_authenticated %}
-<p>Hello, user.name!</p>
+<p>Hello, {{ user.name }}!</p>
 {% endif %}
