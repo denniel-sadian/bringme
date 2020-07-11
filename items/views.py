@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.base import RedirectView
 from django.views.generic import TemplateView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
@@ -7,6 +8,7 @@ from django.views.generic.edit import DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
 
 from .models import Item
 
@@ -66,3 +68,21 @@ class ItemDeleteView(LoginRequiredMixin, DeleteView):
         if item.closed or item.user != self.request.user:
             return redirect(reverse_lazy('items:items-list'))
         return super().dispatch(*args, **kwargs)
+
+
+class ItemCloseToggleRedirectView(RedirectView):
+    permanent = False
+    query_string = True
+    pattern_name = 'item-detail'
+
+    def get_redirect_url(self, *args, **kwargs):
+        item = get_object_or_404(Item, pk=kwargs['pk'])
+        if item.user != self.request.user:
+            if not item.closed:
+                item.closed = True
+                item.closed_by = self.request.user
+            else:
+                item.closed = False
+                item.closed_by = None
+            item.save()
+        return super().get_redirect_url(*args, **kwargs)
