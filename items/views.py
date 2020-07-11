@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
@@ -43,7 +44,25 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
     fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
 
     def dispatch(self, *args, **kwargs):
-        """Don't let users update items if they've been closed already."""
+        """
+        Don't let users update items if they've been closed already.
+        """
         if self.get_object().closed:
+            return redirect(reverse_lazy('items:items-list'))
+        return super().dispatch(*args, **kwargs)
+
+
+class ItemDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('accounts:login')
+    success_url = reverse_lazy('items:items-list')
+    model = Item
+
+    def dispatch(self, *args, **kwargs):
+        """
+        Don't let users delete items if they've been closed already
+        or they're not the owner of the item.
+        """
+        item = self.get_object()
+        if item.closed or item.user != self.request.user:
             return redirect(reverse_lazy('items:items-list'))
         return super().dispatch(*args, **kwargs)
