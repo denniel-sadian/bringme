@@ -14,6 +14,7 @@ class HomeView(TemplateView):
 
 class ItemsListView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('accounts:login')
+    context_object_name = 'items'
 
     def get_queryset(self):
         return Item.objects.filter(delivered=False)
