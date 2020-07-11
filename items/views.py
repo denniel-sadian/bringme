@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 
@@ -33,3 +34,9 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class ItemUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('accounts:login')
+    model = Item
+    fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
