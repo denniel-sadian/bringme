@@ -1,0 +1,7 @@
+Django==2.2.14
+django-resized==0.3.11
+Pillow==7.2.0
+pkg-resources==0.0.0
+python-dotenv==0.14.0
+pytz==2020.1
+sqlparse==0.3.1
