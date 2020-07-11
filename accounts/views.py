@@ -15,7 +15,7 @@ class RegisterView(CreateView):
 class UpdateUserView(UpdateView):
     form_class = CustomUserChangeForm
     template_name = 'registration/profile_update.html'
-    success_url = reverse_lazy('accounts:profile')
+    success_url = reverse_lazy('accounts:profile-update')
 
     def get_object(self):
         return self.request.user
