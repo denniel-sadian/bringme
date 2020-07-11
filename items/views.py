@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
 from django.views.generic.base import RedirectView
 from django.views.generic import TemplateView
 from django.views.generic import ListView
@@ -6,9 +7,11 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.detail import DetailView
+from django.views.generic.detail import SingleObjectMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 
 from .models import Item
 
@@ -89,3 +92,30 @@ class ItemCloseToggleRedirectView(LoginRequiredMixin, RedirectView):
                 item.closed_by = None
             item.save()
         return super().get_redirect_url(*args, **kwargs)
+
+
+class ItemMarkDeliveredView(LoginRequiredMixin, SingleObjectMixin, View):
+    model = Item
+    context_object_name = 'item'
+
+    def dispatch(self, *args, **kwargs):
+        """
+        Don't let users mark the items delivered if they are not closed
+        yet or they're not the owner.
+        """
+        item = self.get_object()
+        if not item.closed or item.user != self.request.user:
+            return redirect(reverse_lazy('items:items-list'))
+        return super().dispatch(*args, **kwargs)
+
+    def get(self):
+        return render(
+            request, 'items/item_confirm_delivered.html', {'item': self.get_object()})
+    
+    def post(self):
+        item = self.get_object()
+        item.delivered = True
+        item.closed_by.deliveries = item.closed_by.deliveries + 1
+        item.closed_by.save()
+        item.save()
+        return redirect(reverse_lazy('items:item-detail', {'pk': item.id}))
