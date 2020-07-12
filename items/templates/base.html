@@ -6,9 +6,35 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'w3.css' %}">
+    <style>
+        nav {
+            outline: 1px solid red;
+            display: grid;
+            grid-template-columns: auto 1fr;
+        }
+
+        .brand {
+            display: grid;
+            grid-template-columns: auto 1fr;
+        }
+
+        nav>div {
+            padding: 16px;
+        }
+    </style>
 </head>
 
 <body>
+    <nav>
+        <div class="brand">
+            <a href="{% url 'items:home' %}">BringME</a>
+            <span class="w3-small">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span>
+        </div>
+        <div class="links">
+            <a href="{% url 'items:items-list' %}">BringME</a>
+            <a href="{% url 'accounts:profile-update' %}">BringME</a>
+        </div>
+    </nav>
     {% block content %}
     {% endblock %}
 </body>
