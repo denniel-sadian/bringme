@@ -7,12 +7,17 @@
 <style>
     header {
         text-align: center;
-        padding: 64px 16px;
+        padding: 64px 16px 16px 16px;
     }
 
     header>h1 {
         font-size: 50px;
         font-weight: 800;
+    }
+
+    article hr {
+        border: 0.5px solid #9e9e9e;
+        margin-top: 100px;
     }
 
     .two-grid {
@@ -21,9 +26,31 @@
         align-items: center;
     }
 
-    .two-grid .icon {
+    .icon {
         text-align: center;
         font-size: 200px;
+    }
+
+    .last {
+        margin-bottom: 100px;
+    }
+
+    @media screen and (max-width: 700px) {
+        .two-grid {
+            text-align: center;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "icon""text";
+        }
+
+        .icon {
+            font-size: 80px;
+            grid-area: icon;
+        }
+
+        .text {
+            grid-area: text;
+        }
     }
 </style>
 
@@ -46,15 +73,41 @@
         <hr>
         <div class="two-grid">
             <div class="text">
-                <h2>Post items far from you. <span class="w3-text-gray">Let others deliver them to you.</span></h2>
-                <p>If you're at home and you need an item bought somewhere far at your local place, just post that item.
-                    Riders from the place where your item is sold will see them and they can decide whether to deliver
+                <h2>Post items that are far from you. <span class="w3-text-gray">Let others deliver them to you.</span>
+                </h2>
+                <p>If you're at home and you need an item bought somewhere far in your local place, just post that item.
+                    Riders from the location of your item will see it and they can decide to deliver
                     it to you.</p>
             </div>
             <div class="icon">
-                <i class="fas fa-shopping-bag w3-text-orange"></i>
+                <i class="fas fa-shopping-bag w3-text-purple"></i>
             </div>
         </div>
+    </div>
+</article>
+
+<article class="w3-container">
+    <div class="w3-content">
+        <hr>
+        <div class="two-grid">
+            <div class="icon">
+                <i class="fas fa-motorcycle w3-text-teal"></i>
+            </div>
+            <div class="text">
+                <h2>Deliver items to other users. <span class="w3-text-gray">You can earn some money!</span></h2>
+                <p>You can also be a rider who delivers items to other users. If you see a post for an item that can be
+                    bought near you, and you have your own vehicle, then you can deliver it to the user who posted
+                    that item. You are in control of the charge for the delivery.</p>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="w3-container w3-center last">
+    <div class="w3-content">
+        <hr>
+        <h2><i class="far fa-heart w3-text-red"></i> <br> Help everyone!</h2>
+        <p class="w3-large">Help by posting. Help by delivering.</p>
     </div>
 </article>
 
