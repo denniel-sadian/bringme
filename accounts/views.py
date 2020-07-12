@@ -1,5 +1,6 @@
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 from .forms import CustomUserCreationForm
@@ -12,10 +13,11 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('accounts:login')
 
 
-class UpdateUserView(UpdateView):
+class UpdateUserView(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('accounts:login')
+    success_url = reverse_lazy('accounts:profile-update')
     form_class = CustomUserChangeForm
     template_name = 'registration/profile_update.html'
-    success_url = reverse_lazy('accounts:profile-update')
 
     def get_object(self):
         return self.request.user
