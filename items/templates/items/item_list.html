@@ -1,3 +1,11 @@
+<form method="get">
+    <p>
+        <label for="address">Address:</label>
+        <input type="text" name="address" />
+        <button type="submit">Find</button>
+    </p>
+</form>
+
 <ul>
 {% for i in items %}
 <li>{{ i.name }} by {{ i.user.name }}. Closed by {{ i.closed_by.name }}.</li>
