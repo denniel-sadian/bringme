@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="{% static 'w3.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
     <script src="https://kit.fontawesome.com/209b41c676.js" crossorigin="anonymous"></script>
+    <script src="{% static 'jquery-3.5.1.min.js' %}"></script>
     <style>
         nav {
             display: grid;
             grid-template-columns: auto 1fr;
             padding: 0px 40px;
+            transition: 0.3s;
         }
 
         nav>div {
@@ -44,11 +46,67 @@
             margin-left: 8px;
         }
 
+        .links a:hover {
+            transition: 0.3s;
+            color: #ffeb3b;
+        }
+
         a {
             text-decoration: none;
             font-family: 'Nunito';
             font-weight: bold;
             font-size: 16px;
+        }
+
+        #toggle-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            min-height: 60px;
+            min-width: 60px;
+            display: none;
+            border: none;
+            background: none;
+            color: #fff;
+            font-size: 40px;
+        }
+
+        #toggle-btn:hover {
+            color: #ffeb3b;
+            transition: 0.3s;
+        }
+
+        @media screen and (min-width: 931px) {
+            .links {
+                display: flex;
+            }
+        }
+
+        @media screen and (max-width: 930px) {
+            nav {
+                padding: 0px;
+                grid-template-columns: 1fr;
+            }
+
+            #toggle-btn {
+                display: block;
+            }
+
+            .links {
+                flex-direction: column;
+                text-align: left;
+            }
+
+            .links a {
+                width: 100%;
+                margin: 0px;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .brand>span {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -59,6 +117,7 @@
             <a href="{% url 'items:home' %}"><img src="{% static 'brand_white.png' %}"></a>
             <span>Deliver or request items during quarantine.</span>
         </div>
+        <button id="toggle-btn"><i class="fas fa-bars"></i></button>
         <div class="links">
             <a href="{% url 'items:items-list' %}"><i class="fas fa-info-circle"></i> About</a>
             {% if user.is_authenticated %}
@@ -66,12 +125,19 @@
             <a href="{% url 'accounts:profile-update' %}"><i class="fas fa-user"></i> Profile</a>
             <a href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
             {% else %}
+            <a href="{% url 'accounts:register' %}"><i class="fas fa-user-plus"></i> Register</a>
             <a href="{% url 'accounts:login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
             {% endif %}
         </div>
     </nav>
-    {% block content %}
-    {% endblock %}
+    {% block content %} {% endblock %}
+    <script>
+        $(function () {
+            $('#toggle-btn').click(function () {
+                $('.links').slideToggle()
+            });
+        })
+    </script>
 </body>
 
 </html>
