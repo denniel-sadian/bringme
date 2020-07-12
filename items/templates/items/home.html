@@ -6,14 +6,24 @@
 
 <style>
     header {
-        border: 1px solid green;
         text-align: center;
         padding: 64px 16px;
     }
 
-    h1 {
-        font-size: 41px;
+    header>h1 {
+        font-size: 50px;
         font-weight: 800;
+    }
+
+    .two-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+
+    .two-grid .icon {
+        text-align: center;
+        font-size: 200px;
     }
 </style>
 
@@ -24,8 +34,28 @@
     <h1>Welcome to <img src="{% static 'brand_black.png' %}">!</h1>
 
     {% if user.is_authenticated %}
-    <p>Hello, {{ user.name }}!</p>
+    <p class="w3-large">Hello, {{ user.name }}!</p>
+    {% else %}
+    <p class="w3-large">Hello, visitor! <a href="{% url 'accounts:register' %}" class="w3-text-blue">Register</a> an
+        account now!</p>
     {% endif %}
 </header>
+
+<article class="w3-container">
+    <div class="w3-content">
+        <hr>
+        <div class="two-grid">
+            <div class="text">
+                <h2>Post items far from you. <span class="w3-text-gray">Let others deliver them to you.</span></h2>
+                <p>If you're at home and you need an item bought somewhere far at your local place, just post that item.
+                    Riders from the place where your item is sold will see them and they can decide whether to deliver
+                    it to you.</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-shopping-bag w3-text-orange"></i>
+            </div>
+        </div>
+    </div>
+</article>
 
 {% endblock %}
