@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <form method="get">
     <p>
         <label for="address">Address:</label>
@@ -7,7 +10,8 @@
 </form>
 
 <ul>
-{% for i in items %}
-<li>{{ i.name }} by {{ i.user.name }}. Closed by {{ i.closed_by.name }}.</li>
-{% endfor %}
+    {% for i in items %}
+    <li>{{ i.name }} by {{ i.user.name }}. Closed by {{ i.closed_by.name }}.</li>
+    {% endfor %}
 </ul>
+{% endblock %}
