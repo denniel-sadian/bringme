@@ -1,9 +1,31 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<h1>Welcome to BringMe!</h1>
+{% load static %}
 
-{% if user.is_authenticated %}
-<p>Hello, {{ user.name }}!</p>
-{% endif %}
+{% block content %}
+
+<style>
+    header {
+        border: 1px solid green;
+        text-align: center;
+        padding: 64px 16px;
+    }
+
+    h1 {
+        font-size: 41px;
+        font-weight: 800;
+    }
+</style>
+
+
+<header>
+    <img src="{% static 'wave.png' %}" width="100" height="auto">
+
+    <h1>Welcome to <img src="{% static 'brand_black.png' %}">!</h1>
+
+    {% if user.is_authenticated %}
+    <p>Hello, {{ user.name }}!</p>
+    {% endif %}
+</header>
+
 {% endblock %}
