@@ -102,7 +102,8 @@
             </div>
         </div>
         {% endif %}
-        {% if user == item.user and item.closed %}
+
+        {% if user == item.user and item.closed and item.delivered == False %}
         <p class="w3-text-red w3-center">Your post has been closed already and you can no longer modify it.</p>
         <div class="w3-card-4 w3-khaki w3-round-large w3-padding">
             <p>Did <b>{{ item.closed_by.name }}</b> deliver this item to you already?</p>
@@ -113,6 +114,11 @@
             </div>
         </div>
         {% endif %}
+
+        {% if user == item.user and item.delivered %}
+        <p class="w3-text-green w3-center">This item has been delivered to you already. Thank you for using BringMe!</p>
+        {% endif %}
+
         <hr>
         <div class="w3-right-align">
             <a href="{% url 'items:items-list' %}" class="w3-button w3-card w3-round-large">
