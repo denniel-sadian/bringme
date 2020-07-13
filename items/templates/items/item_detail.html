@@ -73,30 +73,46 @@
                         <p><b>Email:</b> {{ item.closed_by.email }}</p>
                     </div>
                 </div>
+                {% if user == item.closed_by %}
+                <div class="w3-card-4 w3-khaki w3-round-large w3-padding">
+                    <p>You have closed this item! Be safe on your way.</p>
+                    <div class="w3-right-align">
+                        <a href="{% url 'items:item-close-toggle' pk=item.pk %}"
+                            class="w3-button w3-card w3-green w3-round-large">
+                            <i class="fas fa-unlock"></i> Undo
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
             </dd>
         </dl>
         {% endif %}
         <p><b class="w3-text-pink w3-large">Description:</b> {{ item.description }}</p>
         <p><b class="w3-text-pink w3-large">Expected Price:</b> {{ item.expected_price }}</p>
         <p><b class="w3-text-pink w3-large">Expected Store:</b> {{ item.expected_store }}</p>
+        {% if user != item.user and item.closed == False %}
         <div class="w3-card-4 w3-khaki w3-round-large w3-padding">
-            {% if item.closed %}
-            <p>You have closed this item! Be safe buying and delivering this to <b>{{ item.user.name }}</b>.</p>
-            {% else %}
             <p>Do you know this item, and you know where to buy it, and the store is near you? Do you want to deliver
                 this? Close it now!</p>
-            {% endif %}
             <div class="w3-right-align">
                 <a href="{% url 'items:item-close-toggle' pk=item.pk %}"
                     class="w3-button w3-card w3-green w3-round-large">
-                    {% if item.closed %}
-                    <i class="fas fa-unlock"></i> Undo
-                    {% else %}
                     <i class="fas fa-lock"></i> Secure Item
-                    {% endif %}
                 </a>
             </div>
         </div>
+        {% endif %}
+        {% if user == item.user and item.closed %}
+        <p class="w3-text-red w3-center">Your post has been closed already and you can no longer modify it.</p>
+        <div class="w3-card-4 w3-khaki w3-round-large w3-padding">
+            <p>Did <b>{{ item.closed_by.name }}</b> deliver this item to you already?</p>
+            <div class="w3-right-align">
+                <a href="{% url 'items:item-delivered' pk=item.pk %}" class="w3-button w3-card w3-green w3-round-large">
+                    <i class="fas fa-check-circle"></i> Yes
+                </a>
+            </div>
+        </div>
+        {% endif %}
         <hr>
         <div class="w3-right-align">
             <a href="{% url 'items:items-list' %}" class="w3-button w3-card w3-round-large">
