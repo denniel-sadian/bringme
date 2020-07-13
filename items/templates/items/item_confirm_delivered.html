@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="post">{% csrf_token %}
-    <p>Are you sure this item has been delivered "{{ object.name }}"?</p>
-    <input type="submit" value="Confirm">
-</form>
+<article class="w3-container inside-art">
+    <div class="w3-content">
+        <h1><i class="fas fa-exclamation-triangle w3-text-yellow"></i> Confirmation</h1>
+        <p>Are you sure that <b>{{ item.closed_by.name }}</b> has delivered to you this <b>"{{ item.name }}"</b>
+            already?</b>
+        </p>
+        <form method="post" class="w3-right-align">
+            {% csrf_token %}
+            <button type="submit" class="w3-button w3-card w3-green w3-round-large"><i class="fas fa-check-circle"></i>
+                Yes</button>
+            <a href="{% url 'items:item-detail' pk=item.pk %}" class="w3-button w3-card w3-red w3-round-large">
+                <i class="fas fa-times-circle"></i> No
+            </a>
+        </form>
+    </div>
+</article>
 {% endblock %}
