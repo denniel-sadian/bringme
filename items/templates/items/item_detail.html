@@ -1,8 +1,56 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ item.name }}</h1>
-<p>By: {{ item.user.name }}</p>
-<p>Closed by: {{ item.closed_by.name }}</p>
-<p>Delivered: {{ item.delivered }}</p>
+<style>
+    .inside-art img:first-child {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .photo {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+    }
+
+    .photo img {
+        max-width: 50px;
+        max-height: 50px;
+        object-fit: cover;
+        border-radius: 100%;
+        margin-right: 8px;
+    }
+
+    .photo p {
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0px;
+    }
+</style>
+
+<article class="w3-container inside-art">
+    <div class="w3-content">
+        <img src="{{ item.photo.url }}">
+        <h1>{{ item.name }}</h1>
+        <dl>
+            <dt>
+                <h4>Posted by:</h4>
+            </dt>
+            <dd>
+                <div class="profile">
+                    <div class="photo">
+                        <img src="{{ item.user.photo.url }}">
+                        <p>{{ item.user.name }}</p>
+                    </div>
+                    <div>
+                        <p><b>Address:</b> {{ item.user.address }}</p>
+                        <p><b>Contact Number:</b> {{ item.user.contact_number }}</p>
+                        <p><b>Email:</b> {{ item.user.email }}</p>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+    </div>
+</article>
 {% endblock %}
