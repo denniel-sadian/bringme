@@ -64,7 +64,7 @@
     <p class="w3-large">Hello, {{ user.name }}!</p>
     {% else %}
     <p class="w3-large">Hello, visitor! <a href="{% url 'accounts:register' %}" class="w3-text-blue">Register</a> an
-        account now!</p>
+        account now! Or <a href="{% url 'accounts:login' %}" class="w3-text-blue">login</a>!</p>
     {% endif %}
 </header>
 
