@@ -92,7 +92,7 @@ class ItemCloseToggleRedirectView(LoginRequiredMixin, RedirectView):
         user = self.request.user
 
         # Accept if it isn't the owner
-        if item.user != user or not item.delivered:
+        if item.user != user and not item.delivered:
             if not item.closed:
                 item.closed = True
                 item.closed_by = user
