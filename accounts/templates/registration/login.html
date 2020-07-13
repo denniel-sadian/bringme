@@ -1,11 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Login</h2>
+<style>
+    .inside-art {
+        max-width: 400px;
+    }
+</style>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login">
-</form>
+<article class="w3-container inside-art">
+    <div class="w3-content">
+        <h1><i class="fas fa-sign-in-alt"></i> Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <hr>
+            <div class="w3-right-align">
+                <a href="{% url 'accounts:register' %}" class="w3-button w3-card w3-round-large"><i
+                        class="fas fa-user-plus"></i> Register</a>
+                <button type="submit" class="w3-button w3-card w3-green w3-round-large"><i
+                        class="fas fa-sign-in-alt"></i>
+                    Login</button>
+            </div>
+        </form>
+    </div>
+</article>
 {% endblock %}
