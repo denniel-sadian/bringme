@@ -40,7 +40,7 @@
         <p><i class="far fa-clock"></i> {{ item.date }}</p>
         <dl>
             <dt>
-                <h4 class="w3-text-pink">Posted by:</h4>
+                <p class="w3-text-pink w3-large"><b>Posted by:</b></p>
             </dt>
             <dd>
                 <div class="profile">
@@ -55,29 +55,61 @@
                     </div>
                 </div>
             </dd>
-            <dt>
-                <h4 class="w3-text-pink">Description:</h4>
-            </dt>
-            <dd>{{ item.description }}</dd>
-            <dt>
-                <h4 class="w3-text-pink">Expected Price:</h4>
-            </dt>
-            <dd>{{ item.expected_price }}</dd>
-            <dt>
-                <h4 class="w3-text-pink">Expected Store:</h4>
-            </dt>
-            <dd>{{ item.expected_store }}</dd>
         </dl>
+        {% if item.closed %}
+        <dl>
+            <dt>
+                <p class="w3-text-pink w3-large"><b>Closed by:</b></p>
+            </dt>
+            <dd>
+                <div class="profile">
+                    <div class="photo">
+                        <img src="{{ item.closed_by.photo.url }}">
+                        <p>{{ item.closed_by.name }}</p>
+                    </div>
+                    <div>
+                        <p><b>Address:</b> {{ item.closed_by.address }}</p>
+                        <p><b>Contact Number:</b> {{ item.closed_by.contact_number }}</p>
+                        <p><b>Email:</b> {{ item.closed_by.email }}</p>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+        {% endif %}
+        <p><b class="w3-text-pink w3-large">Description:</b> {{ item.description }}</p>
+        <p><b class="w3-text-pink w3-large">Expected Price:</b> {{ item.expected_price }}</p>
+        <p><b class="w3-text-pink w3-large">Expected Store:</b> {{ item.expected_store }}</p>
+        <div class="w3-card-4 w3-khaki w3-round-large w3-padding">
+            {% if item.closed %}
+            <p>You have closed this item! Be safe buying and delivering this to <b>{{ item.user.name }}</b>.</p>
+            {% else %}
+            <p>Do you know this item, and you know where to buy it, and the store is near you? Do you want to deliver
+                this? Close it now!</p>
+            {% endif %}
+            <div class="w3-right-align">
+                <a href="{% url 'items:item-close-toggle' pk=item.pk %}"
+                    class="w3-button w3-card w3-green w3-round-large">
+                    {% if item.closed %}
+                    <i class="fas fa-unlock"></i> Undo
+                    {% else %}
+                    <i class="fas fa-lock"></i> Secure Item
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        <hr>
         <div class="w3-right-align">
             <a href="{% url 'items:items-list' %}" class="w3-button w3-card w3-round-large">
                 <i class="fas fa-arrow-circle-left"></i> Back
             </a>
+            {% if user == item.user and item.closed == False %}
             <a href="{% url 'items:item-delete' pk=item.pk %}" class="w3-button w3-card w3-red w3-round-large">
                 <i class="far fa-trash-alt"></i> Delete
             </a>
             <a href="{% url 'items:item-update' pk=item.pk %}" class="w3-button w3-card w3-green w3-round-large">
                 <i class="fas fa-pencil-alt"></i> Edit
             </a>
+            {% endif %}
         </div>
     </div>
 </article>
