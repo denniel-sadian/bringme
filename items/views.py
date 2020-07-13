@@ -43,6 +43,7 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('accounts:login')
     model = Item
     fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
+    template_name = 'items/item_create.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -53,6 +54,7 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('accounts:login')
     model = Item
     fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
+    template_name = 'items/item_update.html'
 
     def dispatch(self, *args, **kwargs):
         """
