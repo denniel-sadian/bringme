@@ -33,9 +33,10 @@
     <div class="w3-content">
         <img src="{{ item.photo.url }}">
         <h1>{{ item.name }}</h1>
+        <p><i class="far fa-clock"></i> {{ item.date }}</p>
         <dl>
             <dt>
-                <h4>Posted by:</h4>
+                <h4 class="w3-text-pink">Posted by:</h4>
             </dt>
             <dd>
                 <div class="profile">
@@ -50,6 +51,18 @@
                     </div>
                 </div>
             </dd>
+            <dt>
+                <h4 class="w3-text-pink">Description:</h4>
+            </dt>
+            <dd>{{ item.description }}</dd>
+            <dt>
+                <h4 class="w3-text-pink">Expected Price:</h4>
+            </dt>
+            <dd>{{ item.expected_price }}</dd>
+            <dt>
+                <h4 class="w3-text-pink">Expected Store:</h4>
+            </dt>
+            <dd>{{ item.expected_store }}</dd>
         </dl>
     </div>
 </article>
