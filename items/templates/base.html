@@ -93,6 +93,13 @@
             font-family: 'Nunito'
         }
 
+        .page {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr auto;
+            height: 100vh;
+        }
+
         @media screen and (min-width: 931px) {
             .links {
                 display: flex !important;
@@ -157,17 +164,22 @@
             </div>
         </div>
     </nav>
-    {% block content %} {% endblock %}
 
-    <footer class="w3-container w3-black">
-        <div class="w3-content">
-            <h4><img src="{% static 'brand_white.png' %}" height="35" width="auto"> <i class="far fa-copyright"></i>
-                2020</h4>
-            <p class="w3-right-align">This web app was woven by <a href="https://sadian.herokuapp.com"
-                    class="w3-text-blue">@deinspider</a>.
-            </p>
+    <div class="page">
+        <div>
+            {% block content %} {% endblock %}
         </div>
-    </footer>
+
+        <footer class="w3-container w3-black">
+            <div class="w3-content">
+                <h4><img src="{% static 'brand_white.png' %}" height="35" width="auto"> <i class="far fa-copyright"></i>
+                    2020</h4>
+                <p class="w3-right-align">This web app was woven by <a href="https://sadian.herokuapp.com"
+                        class="w3-text-blue">@deinspider</a>.
+                </p>
+            </div>
+        </footer>
+    </div>
 
     <script>
         $(function () {
