@@ -14,6 +14,10 @@
         align-items: center;
     }
 
+    img {
+        border-radius: 8px;
+    }
+
     .photo img {
         max-width: 50px;
         max-height: 50px;
@@ -64,6 +68,17 @@
             </dt>
             <dd>{{ item.expected_store }}</dd>
         </dl>
+        <div class="w3-right-align">
+            <a href="{% url 'items:items-list' %}" class="w3-button w3-card w3-round-large">
+                <i class="fas fa-arrow-circle-left"></i> Back
+            </a>
+            <a href="{% url 'items:item-delete' pk=item.pk %}" class="w3-button w3-card w3-red w3-round-large">
+                <i class="far fa-trash-alt"></i> Delete
+            </a>
+            <a href="{% url 'items:item-update' pk=item.pk %}" class="w3-button w3-card w3-green w3-round-large">
+                <i class="fas fa-pencil-alt"></i> Edit
+            </a>
+        </div>
     </div>
 </article>
 {% endblock %}
