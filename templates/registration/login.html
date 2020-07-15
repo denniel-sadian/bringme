@@ -15,12 +15,13 @@
             {{ form.as_p }}
             <hr>
             <div class="w3-right-align">
-                <a href="{% url 'register' %}" class="w3-button w3-card w3-round-large"><i
-                        class="fas fa-user-plus"></i> Register</a>
+                <a href="{% url 'register' %}" class="w3-button w3-card w3-round-large"><i class="fas fa-user-plus"></i>
+                    Register</a>
                 <button type="submit" class="w3-button w3-card w3-green w3-round-large"><i
                         class="fas fa-sign-in-alt"></i>
                     Login</button>
             </div>
+            <p><a href="{% url 'password_reset' %}" class="w3-text-blue">I have forgotten my password.</a></p>
         </form>
     </div>
 </article>
