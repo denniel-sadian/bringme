@@ -85,8 +85,8 @@
                 </div>
                 {% elif user == item.closed_by and item.delivered %}
                 <div class="w3-card-4 w3-pale-green w3-round-large w3-padding">
-                    <p><i class="fas fa-check-circle w3-text-green"></i> {{ item.user.name }} has confirmed that you
-                        have delivered this already.</p>
+                    <p><i class="fas fa-check-circle w3-text-green"></i> <b>{{ item.user.name }}</b> has confirmed that
+                        you have delivered this already.</p>
                 </div>
                 {% endif %}
             </dd>
