@@ -1,5 +1,10 @@
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.template.loader import render_to_string
+
+from .tokens import account_activation_token
 
 
 class CustomUserManager(BaseUserManager):
@@ -16,6 +21,16 @@ class CustomUserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
+        
+        user.is_active = False
+        subject = 'Activate Your Account'
+        message = render_to_string('accounts/activation_email.html', {
+            'user': user,
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'token': account_activation_token.make_token(user),
+        })
+        user.email_user(subject, message, html_message=message)
+        
         user.save()
         return user
 
