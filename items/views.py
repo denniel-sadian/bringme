@@ -144,4 +144,4 @@ class ItemMarkDeliveredView(LoginRequiredMixin, SingleObjectMixin, View):
         item.closed_by.deliveries = item.closed_by.deliveries + 1
         item.closed_by.save()
         item.save()
-        return redirect(reverse_lazy('item-list'))
+        return redirect(reverse_lazy('items-list'))
