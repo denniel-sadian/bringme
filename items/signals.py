@@ -10,13 +10,16 @@ from accounts.models import CustomUser
 
 
 @receiver(post_save, sender=Item)
-def notify_users(sender, instance, **kwargs):
+def notify_users(sender, instance, created, **kwargs):
+    if not created:
+        return
+    
     address = instance.user.address
     
     to_emails = []
     for user in CustomUser.objects.all():
         if user.address in address:
-            to_email.append(user.email)
+            to_emails.append(user.email)
     
     html_message = render_to_string('items/new_post_notif.html', {'post': instance})
     plain_message = strip_tags(html_message)
