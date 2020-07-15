@@ -15,7 +15,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
 
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=30)
     address = models.CharField(max_length=255)
     contact_number = models.CharField(max_length=12)
     photo = ResizedImageField(size=[400, 400], upload_to='profiles', force_format='PNG')
