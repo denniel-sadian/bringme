@@ -211,7 +211,7 @@
                         <a href="{% url 'items-list' %}" class="w3-text-green"><i class="fas fa-shopping-bag"></i>
                             Items</a>
                         <a href="{% url 'profile-update' %}" class="w3-text-orange"><i class="fas fa-user"></i>
-                            Profile</a>
+                            {{ user.email }}</a>
                         <a href="{% url 'logout' %}" class="w3-text-pink"><i class="fas fa-sign-out-alt"></i>
                             Logout</a>
                         {% else %}
