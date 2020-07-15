@@ -23,7 +23,7 @@ class HomeView(TemplateView):
 class ItemsListView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     context_object_name = 'items'
-    paginated_by = 10
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = Item.objects.filter(delivered=False)
