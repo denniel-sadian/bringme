@@ -50,6 +50,10 @@
         align-items: center;
     }
 
+    .post .bottom {
+        padding: 8px;
+    }
+
     .post .text {
         padding: 0px 8px 8px 8px;
     }
@@ -106,8 +110,9 @@
                     "<b>{{ i.expected_store }}</b>".</p>
             </div>
             <img src="{{ i.photo.url }}" class="item-pic">
-            <div class="w3-right-align links">
-                <a href="{% url 'item-detail' pk=i.pk %}" class="w3-button w3-card w3-green w3-round-large">View</a>
+            <div class="w3-right-align bottom">
+                <a href="{% url 'item-detail' pk=i.pk %}" class="w3-button w3-card w3-green w3-round-large"><i
+                        class="fas fa-long-arrow-alt-right"></i> View</a>
             </div>
         </div>
         {% endfor %}
