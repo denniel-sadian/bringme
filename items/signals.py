@@ -18,7 +18,7 @@ def notify_users(sender, instance, created, **kwargs):
     
     to_emails = []
     for user in CustomUser.objects.all():
-        if user.address in address:
+        if user.address in address and user != instance.user:
             to_emails.append(user.email)
     
     html_message = render_to_string('items/new_post_notif.html', {'post': instance})
