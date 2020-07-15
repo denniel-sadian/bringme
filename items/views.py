@@ -27,6 +27,7 @@ class ItemsListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         if 'address' in self.request.GET:
             get_address = self.request.GET['address']
+            get_address = get_address.upper().replace(' ', '')
             return Item.objects.filter(user__address__icontains=get_address,
                                        delivered=False)
         user_address = self.request.user.address
