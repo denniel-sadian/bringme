@@ -37,6 +37,14 @@ class ItemsListView(LoginRequiredMixin, ListView):
             queryset = queryset.filter(user__address__icontains=user_address)
         
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items_closed_by_user'] = Item.objects.filter(
+            closed_by=self.request.user).order_by('-date')
+        context['items_delivered_by_user'] = Item.objects.filter(
+            closed_by=self.request.user, delivered=True).order_by('-date')
+        return context
 
 
 class ItemDetailView(LoginRequiredMixin, DetailView):
