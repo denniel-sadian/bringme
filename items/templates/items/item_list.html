@@ -82,6 +82,15 @@
         height: 250px;
         object-fit: cover;
     }
+
+    .pagination {
+        text-align: center;
+    }
+
+    .pagination a {
+        text-decoration: none;
+        color: #2196F3;
+    }
 </style>
 
 <article class="inside-art w3-container">
@@ -105,9 +114,6 @@
             </div>
             <div class="text">
                 <p>Hi! Can someone please buy me <b>"{{ i.name }}"</b>?</p>
-                <p>{{ i.description }}</p>
-                <p>My expected price for this is <b>Php {{ i.expected_price }}</b>. I think, you can buy this at
-                    "<b>{{ i.expected_store }}</b>".</p>
             </div>
             <img src="{{ i.photo.url }}" class="item-pic">
             <div class="w3-right-align bottom">
@@ -117,21 +123,23 @@
         </div>
         {% endfor %}
 
+        {% if page_obj.paginator.num_pages > 1 %}
         <div class="pagination">
             <span class="step-links">
                 {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                <a href="?page={{ page_obj.previous_page_number }}&address={{ request.GET.address }}"><i
+                        class="fas fa-arrow-circle-left"></i></a>
                 {% endif %}
                 <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
                 </span>
                 {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                <a href="?page={{ page_obj.next_page_number }}&address={{ request.GET.address }}"><i
+                        class="fas fa-arrow-circle-right"></i></a>
                 {% endif %}
             </span>
         </div>
+        {% endif %}
     </div>
 </article>
 {% endblock %}
