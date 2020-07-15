@@ -35,11 +35,18 @@ def notify_users_on_new_post(sender, instance, created, **kwargs):
 
 
 @receiver(pre_save, sender=Item)
-def notify_user_on_undo(sender, instance, **kwargs):
+def notify_user_on_post(sender, instance, **kwargs):
     if not instance.pk:
         return
     
     item = Item.objects.get(pk=instance.pk)
+    
+    # Undo
     if item.closed and not instance.closed:
         html_message = render_to_string('items/notif_undo.html', {'post': item})
         notify_users('Post Canceled', [item.user.email], html_message)
+    
+    # Close
+    elif not item.closed and instance.closed:
+        html_message = render_to_string('items/notif_closed_post.html', {'post': instance})
+        notify_users('Post Closed', [item.user.email], html_message)
