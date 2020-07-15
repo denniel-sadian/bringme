@@ -32,7 +32,7 @@
         border-radius: 8px;
         border: 1px solid gray;
         box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
-        margin-bottom: 50px;
+        margin: 50px 0px;
     }
 
     .post .top {
@@ -102,6 +102,9 @@
             </p>
             <button type="submit" class="w3-button w3-gray w3-round"><i class="fas fa-search-location"></i></button>
         </form>
+        <a href="{% url 'item-create' %}" class="w3-button w3-block w3-green w3-round-large"><i
+                class="far fa-paper-plane"></i>
+            Post</a>
         {% for i in items %}
         <div class="post">
             <div class="top">
