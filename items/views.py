@@ -40,7 +40,8 @@ class ItemsListView(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user_items_closed'] = self.request.user.items.filter(closed=True)
+        context['user_items_closed'] = self.request.user.items.filter(
+            closed=True, delivered=False)
         context['items_closed_by_user'] = Item.objects.filter(
             closed_by=self.request.user, delivered=False).order_by('-date')
         context['items_delivered_by_user'] = Item.objects.filter(
