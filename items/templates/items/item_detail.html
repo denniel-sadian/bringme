@@ -73,7 +73,7 @@
                         <p><b>Email:</b> {{ item.closed_by.email }}</p>
                     </div>
                 </div>
-                {% if user == item.closed_by %}
+                {% if user == item.closed_by and item.delivered == False %}
                 <div class="w3-card-4 w3-khaki w3-round-large w3-padding">
                     <p>You have closed this item! Be safe on your way.</p>
                     <div class="w3-right-align">
@@ -82,6 +82,11 @@
                             <i class="fas fa-unlock"></i> Undo
                         </a>
                     </div>
+                </div>
+                {% elif user == item.closed_by and item.delivered %}
+                <div class="w3-card-4 w3-pale-green w3-round-large w3-padding">
+                    <p><i class="fas fa-check-circle w3-text-green"></i> {{ item.user.name }} has confirmed that you
+                        have delivered this already.</p>
                 </div>
                 {% endif %}
             </dd>
@@ -95,8 +100,7 @@
             <p>Do you know this item, and you know where to buy it, and the store is near you? Do you want to deliver
                 this? Close it now!</p>
             <div class="w3-right-align">
-                <a href="{% url 'item-close-toggle' pk=item.pk %}"
-                    class="w3-button w3-card w3-green w3-round-large">
+                <a href="{% url 'item-close-toggle' pk=item.pk %}" class="w3-button w3-card w3-green w3-round-large">
                     <i class="fas fa-lock"></i> Secure Item
                 </a>
             </div>
