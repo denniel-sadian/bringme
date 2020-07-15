@@ -40,13 +40,18 @@ def notify_user_on_post(sender, instance, **kwargs):
         return
     
     item = Item.objects.get(pk=instance.pk)
+
+    # Closed
+    if not item.closed and instance.closed:
+        html_message = render_to_string('items/notif_closed_post.html', {'post': instance})
+        notify_users('Post Closed', [item.user.email], html_message)
     
-    # Undo
-    if item.closed and not instance.closed:
+    # Canceled
+    elif item.closed and not instance.closed:
         html_message = render_to_string('items/notif_undo.html', {'post': item})
         notify_users('Post Canceled', [item.user.email], html_message)
     
-    # Close
-    elif not item.closed and instance.closed:
-        html_message = render_to_string('items/notif_closed_post.html', {'post': instance})
-        notify_users('Post Closed', [item.user.email], html_message)
+    # Delivered
+    if not item.delivered and instance.Delivered:
+        html_message = render_to_string('items/notif_delivered.html', {'post': item})
+        notify_users('Item Delivered', [item.closed_by.email], html_message)
