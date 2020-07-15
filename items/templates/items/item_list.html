@@ -27,6 +27,41 @@
     .address-filter p {
         margin: 0px !important;
     }
+
+    .post {
+        border-radius: 8px;
+        border: 1px solid gray;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+        margin-bottom: 50px;
+    }
+
+    .post .top {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        padding: 8px;
+    }
+
+    .post .top img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+
+    .post .top p {
+        margin: 0px;
+    }
+
+    .post .top div {
+        margin-left: 8px;
+    }
+
+    .post .item-pic {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
 </style>
 
 <article class="inside-art w3-container">
@@ -39,7 +74,16 @@
             <button type="submit" class="w3-button w3-gray w3-round"><i class="fas fa-search-location"></i></button>
         </form>
         {% for i in items %}
-        {{ i.name }} <br>
+        <div class="post">
+            <div class="top">
+                <img src="{{ i.user.photo.url }}">
+                <div>
+                    <p><b>{{ i.user.name }}</b><br><span class="w3-small"><i class="far fa-clock"></i>
+                            {{ i.date }}</span></p>
+                </div>
+            </div>
+            <img src="{{ i.photo.url }}" class="item-pic">
+        </div>
         {% endfor %}
 
         <div class="pagination">
