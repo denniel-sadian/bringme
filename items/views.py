@@ -43,7 +43,7 @@ class ItemsListView(LoginRequiredMixin, ListView):
         context['items_closed_by_user'] = Item.objects.filter(
             closed_by=self.request.user, delivered=False).order_by('-date')
         context['items_delivered_by_user'] = Item.objects.filter(
-            closed_by=self.request.user, delivered=True).order_by('-date')
+            closed_by=self.request.user, delivered=True).order_by('-date')[:10]
         return context
 
 
