@@ -38,8 +38,24 @@
     .post .top {
         display: grid;
         grid-template-columns: auto 1fr;
-        align-items: center;
         padding: 8px;
+    }
+
+    .post .links {
+        padding: 8px;
+    }
+
+    .post .top>div {
+        display: flex;
+        align-items: center;
+    }
+
+    .post .text {
+        padding: 0px 8px 8px 8px;
+    }
+
+    .post .text p {
+        margin: 5px 0px;
     }
 
     .post .top img {
@@ -59,7 +75,7 @@
 
     .post .item-pic {
         width: 100%;
-        height: 200px;
+        height: 250px;
         object-fit: cover;
     }
 </style>
@@ -78,11 +94,21 @@
             <div class="top">
                 <img src="{{ i.user.photo.url }}">
                 <div>
-                    <p><b>{{ i.user.name }}</b><br><span class="w3-small"><i class="far fa-clock"></i>
+                    <p class="w3-large"><b class="w3-text-pink">{{ i.user.name }}</b> from <b>{{ i.user.address }}</b>
+                        <br><span class="w3-small"><i class="far fa-clock"></i>
                             {{ i.date }}</span></p>
                 </div>
             </div>
+            <div class="text">
+                <p>Hi! Can someone please buy me <b>"{{ i.name }}"</b>?</p>
+                <p>{{ i.description }}</p>
+                <p>My expected price for this is <b>Php {{ i.expected_price }}</b>. I think, you can buy this at
+                    "<b>{{ i.expected_store }}</b>".</p>
+            </div>
             <img src="{{ i.photo.url }}" class="item-pic">
+            <div class="w3-right-align links">
+                <a href="{% url 'item-detail' pk=i.pk %}" class="w3-button w3-card w3-green w3-round-large">View</a>
+            </div>
         </div>
         {% endfor %}
 
