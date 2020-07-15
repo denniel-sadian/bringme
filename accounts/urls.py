@@ -7,5 +7,6 @@ from . import views
 urlpatterns = [
     path('', include("django.contrib.auth.urls")),
     path('register/', views.RegisterView.as_view(), name='register'),
+    path('activate/<uidb64>/<token>/', views.ActivateAccount.as_view(), name='activate'),
     path('profile-update/', views.UpdateUserView.as_view(), name='profile-update')
 ]
