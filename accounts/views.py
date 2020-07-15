@@ -10,12 +10,12 @@ from .forms import CustomUserChangeForm
 class RegisterView(CreateView):
     form_class = CustomUserCreationForm
     template_name = 'registration/register.html'
-    success_url = reverse_lazy('accounts:login')
+    success_url = reverse_lazy('login')
 
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
-    login_url = reverse_lazy('accounts:login')
-    success_url = reverse_lazy('accounts:profile-update')
+    login_url = reverse_lazy('login')
+    success_url = reverse_lazy('profile-update')
     form_class = CustomUserChangeForm
     template_name = 'accounts/profile_update.html'
 

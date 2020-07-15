@@ -77,7 +77,7 @@
                 <div class="w3-card-4 w3-khaki w3-round-large w3-padding">
                     <p>You have closed this item! Be safe on your way.</p>
                     <div class="w3-right-align">
-                        <a href="{% url 'items:item-close-toggle' pk=item.pk %}"
+                        <a href="{% url 'item-close-toggle' pk=item.pk %}"
                             class="w3-button w3-card w3-green w3-round-large">
                             <i class="fas fa-unlock"></i> Undo
                         </a>
@@ -95,7 +95,7 @@
             <p>Do you know this item, and you know where to buy it, and the store is near you? Do you want to deliver
                 this? Close it now!</p>
             <div class="w3-right-align">
-                <a href="{% url 'items:item-close-toggle' pk=item.pk %}"
+                <a href="{% url 'item-close-toggle' pk=item.pk %}"
                     class="w3-button w3-card w3-green w3-round-large">
                     <i class="fas fa-lock"></i> Secure Item
                 </a>
@@ -108,7 +108,7 @@
         <div class="w3-card-4 w3-khaki w3-round-large w3-padding">
             <p>Did <b>{{ item.closed_by.name }}</b> deliver this item to you already?</p>
             <div class="w3-right-align">
-                <a href="{% url 'items:item-delivered' pk=item.pk %}" class="w3-button w3-card w3-green w3-round-large">
+                <a href="{% url 'item-delivered' pk=item.pk %}" class="w3-button w3-card w3-green w3-round-large">
                     <i class="fas fa-check-circle"></i> Yes
                 </a>
             </div>
@@ -121,14 +121,14 @@
 
         <hr>
         <div class="w3-right-align">
-            <a href="{% url 'items:items-list' %}" class="w3-button w3-card w3-round-large">
+            <a href="{% url 'items-list' %}" class="w3-button w3-card w3-round-large">
                 <i class="fas fa-arrow-circle-left"></i> Back
             </a>
             {% if user == item.user and item.closed == False %}
-            <a href="{% url 'items:item-delete' pk=item.pk %}" class="w3-button w3-card w3-red w3-round-large">
+            <a href="{% url 'item-delete' pk=item.pk %}" class="w3-button w3-card w3-red w3-round-large">
                 <i class="far fa-trash-alt"></i> Delete
             </a>
-            <a href="{% url 'items:item-update' pk=item.pk %}" class="w3-button w3-card w3-green w3-round-large">
+            <a href="{% url 'item-update' pk=item.pk %}" class="w3-button w3-card w3-green w3-round-large">
                 <i class="fas fa-pencil-alt"></i> Edit
             </a>
             {% endif %}

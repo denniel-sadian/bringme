@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'bringme.wsgi.application'
 
 # Redirects
 
-LOGIN_REDIRECT_URL = 'items:home'
+LOGIN_REDIRECT_URL = 'home'
 
-LOGOUT_REDIRECT_URL = 'accounts:login'
+LOGOUT_REDIRECT_URL = 'login'
 
 
 # Database

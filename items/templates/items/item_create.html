@@ -15,7 +15,7 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div class="w3-right-align">
-                <a href="{% url 'items:items-list' %}" class="w3-button w3-card w3-round-large">
+                <a href="{% url 'items-list' %}" class="w3-button w3-card w3-round-large">
                     <i class="fas fa-arrow-circle-left"></i> Back
                 </a>
                 <button type="submit" class="w3-button w3-green w3-card w3-round-large">

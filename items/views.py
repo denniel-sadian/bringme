@@ -21,7 +21,7 @@ class HomeView(TemplateView):
 
 
 class ItemsListView(LoginRequiredMixin, ListView):
-    login_url = reverse_lazy('accounts:login')
+    login_url = reverse_lazy('login')
     context_object_name = 'items'
 
     def get_queryset(self):
@@ -35,12 +35,12 @@ class ItemsListView(LoginRequiredMixin, ListView):
 
 
 class ItemDetailView(LoginRequiredMixin, DetailView):
-    login_url = reverse_lazy('accounts:login')
+    login_url = reverse_lazy('login')
     model = Item
 
 
 class ItemCreateView(LoginRequiredMixin, CreateView):
-    login_url = reverse_lazy('accounts:login')
+    login_url = reverse_lazy('login')
     model = Item
     fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
     template_name = 'items/item_create.html'
@@ -51,7 +51,7 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
 
 
 class ItemUpdateView(LoginRequiredMixin, UpdateView):
-    login_url = reverse_lazy('accounts:login')
+    login_url = reverse_lazy('login')
     model = Item
     fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
     template_name = 'items/item_update.html'
@@ -61,13 +61,13 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
         Don't let users update items if they've been closed already.
         """
         if self.get_object().closed:
-            return redirect(reverse_lazy('items:items-list'))
+            return redirect(reverse_lazy('items-list'))
         return super().dispatch(*args, **kwargs)
 
 
 class ItemDeleteView(LoginRequiredMixin, DeleteView):
-    login_url = reverse_lazy('accounts:login')
-    success_url = reverse_lazy('items:items-list')
+    login_url = reverse_lazy('login')
+    success_url = reverse_lazy('items-list')
     model = Item
 
     def dispatch(self, *args, **kwargs):
@@ -77,15 +77,15 @@ class ItemDeleteView(LoginRequiredMixin, DeleteView):
         """
         item = self.get_object()
         if item.closed or item.user != self.request.user:
-            return redirect(reverse_lazy('items:items-list'))
+            return redirect(reverse_lazy('items-list'))
         return super().dispatch(*args, **kwargs)
 
 
 class ItemCloseToggleRedirectView(LoginRequiredMixin, RedirectView):
-    login_url = reverse_lazy('accounts:login')
+    login_url = reverse_lazy('login')
     permanent = False
     query_string = True
-    pattern_name = 'items:item-detail'
+    pattern_name = 'item-detail'
 
     def get_redirect_url(self, *args, **kwargs):
         item = get_object_or_404(Item, pk=kwargs['pk'])
@@ -116,7 +116,7 @@ class ItemMarkDeliveredView(LoginRequiredMixin, SingleObjectMixin, View):
         """
         item = self.get_object()
         if not item.closed or item.user != self.request.user:
-            return redirect(reverse_lazy('items:items-list'))
+            return redirect(reverse_lazy('items-list'))
         return super().dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
@@ -129,4 +129,4 @@ class ItemMarkDeliveredView(LoginRequiredMixin, SingleObjectMixin, View):
         item.closed_by.deliveries = item.closed_by.deliveries + 1
         item.closed_by.save()
         item.save()
-        return redirect(reverse_lazy('items:item-detail', kwargs={'pk': item.id}))
+        return redirect(reverse_lazy('item-detail', kwargs={'pk': item.id}))

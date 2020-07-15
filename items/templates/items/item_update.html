@@ -26,10 +26,10 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div class="w3-right-align">
-                <a href="{% url 'items:item-detail' pk=form.instance.pk %}" class="w3-button w3-card w3-round-large">
+                <a href="{% url 'item-detail' pk=form.instance.pk %}" class="w3-button w3-card w3-round-large">
                     <i class="fas fa-arrow-circle-left"></i> Back
                 </a>
-                <a href="{% url 'items:item-delete' pk=form.instance.pk %}"
+                <a href="{% url 'item-delete' pk=form.instance.pk %}"
                     class="w3-button w3-card w3-pink w3-round-large">
                     <i class="far fa-trash-alt"></i> Delete
                 </a>

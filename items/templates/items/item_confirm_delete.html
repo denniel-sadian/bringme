@@ -7,7 +7,7 @@
         <p>Are you sure you want to delete <b>"{{ object.name }}"</b>?</p>
         <form method="post" class="w3-right-align">
             {% csrf_token %}
-            <a href="{% url 'items:item-detail' pk=object.pk %}" class="w3-button w3-card w3-green w3-round-large">
+            <a href="{% url 'item-detail' pk=object.pk %}" class="w3-button w3-card w3-green w3-round-large">
                 <i class="fas fa-times-circle"></i> No
             </a>
             <button type="submit" class="w3-button w3-card w3-red w3-round-large"><i class="fas fa-check-circle"></i>

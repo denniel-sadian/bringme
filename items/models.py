@@ -19,4 +19,4 @@ class Item(models.Model):
     closed_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
 
     def get_absolute_url(self):
-        return reverse('items:item-detail', kwargs={'pk': self.pk})
+        return reverse('item-detail', kwargs={'pk': self.pk})
