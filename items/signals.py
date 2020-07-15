@@ -21,7 +21,7 @@ def notify_users(sender, instance, created, **kwargs):
         if user.address in address and user != instance.user:
             to_emails.append(user.email)
     
-    html_message = render_to_string('items/new_post_notif.html', {'post': instance})
+    html_message = render_to_string('items/notif_new_post.html', {'post': instance})
     plain_message = strip_tags(html_message)
     from_email = settings.DEFAULT_FROM_EMAIL
 
