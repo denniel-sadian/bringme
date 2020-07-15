@@ -160,9 +160,9 @@
 
         {% if items_delivered_by_user.count %}
         <hr class="divider">
-        <h2><i class="fas fa-lock"></i> Posts you've closed.</h2>
+        <h2><i class="fas fa-motorcycle"></i> Recent items you've delivered.</h2>
         {% for i in items_delivered_by_user %}
-        <p class="w3-text-pink"><a href="{% url 'item-detail' pk=i.pk %}"><i class="fas fa-long-arrow-alt-right"></i>
+        <p class="w3-text-green"><a href="{% url 'item-detail' pk=i.pk %}"><i class="fas fa-long-arrow-alt-right"></i>
                 {{ i.name }} by {{ i.user.name }}</a></p>
         {% endfor %}
         {% endif %}
