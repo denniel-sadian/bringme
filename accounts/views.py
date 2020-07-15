@@ -1,16 +1,38 @@
 from django.views.generic.edit import CreateView
+from django.views.generic import View
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.utils.encoding import force_text
+from django.utils.http import urlsafe_base64_decode
 
 from .forms import CustomUserCreationForm
 from .forms import CustomUserChangeForm
+from .models import CustomUser
+from .tokens import account_activation_token
 
 
 class RegisterView(CreateView):
     form_class = CustomUserCreationForm
     template_name = 'registration/register.html'
     success_url = reverse_lazy('login')
+
+
+class ActivateAccount(View):
+
+    def get(self, request, uidb64, token, *args, **kwargs):
+        try:
+            uid = force_text(urlsafe_base64_decode(uidb64))
+            user = CustomUser.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+            user = None
+
+        if user is not None and account_activation_token.check_token(user, token):
+            user.is_active = True
+            user.save()
+            return redirect('https://bognuyan-nhs.now.sh/registration/verified/')
+        else:
+            return redirect('https://bognuyan-nhs.now.sh/registration/error/')
 
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
