@@ -91,6 +91,11 @@
         text-decoration: none;
         color: #2196F3;
     }
+
+    .divider {
+        margin: 50px 0px;
+        border: 0.5px solid black;
+    }
 </style>
 
 <article class="inside-art w3-container">
@@ -142,6 +147,24 @@
                 {% endif %}
             </span>
         </div>
+        {% endif %}
+
+        {% if items_closed_by_user.count %}
+        <hr class="divider">
+        <h2><i class="fas fa-lock"></i> Posts you've closed.</h2>
+        {% for i in items_closed_by_user %}
+        <p class="w3-text-pink"><a href="{% url 'item-detail' pk=i.pk %}"><i class="fas fa-long-arrow-alt-right"></i>
+                {{ i.name }} by {{ i.user.name }}</a></p>
+        {% endfor %}
+        {% endif %}
+
+        {% if items_delivered_by_user.count %}
+        <hr class="divider">
+        <h2><i class="fas fa-lock"></i> Posts you've closed.</h2>
+        {% for i in items_delivered_by_user %}
+        <p class="w3-text-pink"><a href="{% url 'item-detail' pk=i.pk %}"><i class="fas fa-long-arrow-alt-right"></i>
+                {{ i.name }} by {{ i.user.name }}</a></p>
+        {% endfor %}
         {% endif %}
     </div>
 </article>
