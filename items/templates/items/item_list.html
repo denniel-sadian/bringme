@@ -110,6 +110,13 @@
         <a href="{% url 'item-create' %}" class="w3-button w3-block w3-green w3-round-large"><i
                 class="far fa-paper-plane"></i>
             Post</a>
+
+        {% if items.count == 0 %}
+        <p class="w3-center w3-large"><i class="fas fa-heart-broken w3-text-red"></i> There are no posts for your
+            address
+            or filter. Perhaps, all of them have been closed already.</p>
+        {% endif %}
+
         {% for i in items %}
         <div class="post">
             <div class="top">
@@ -152,27 +159,30 @@
         {% if user_items_closed.count %}
         <hr class="divider">
         <h2><i class="fas fa-lock"></i> Your closed posts.</h2>
+        <p>Here are the links to your posts that have been closed (secured) by other users.</p>
         {% for i in user_items_closed %}
         <p class="w3-text-blue"><a href="{% url 'item-detail' pk=i.pk %}"><i class="fas fa-long-arrow-alt-right"></i>
-                {{ i.name }}</a></p>
+                {{ i.name }} closed by {{ i.closed_by.name }}</a></p>
         {% endfor %}
         {% endif %}
 
         {% if items_closed_by_user.count %}
         <hr class="divider">
         <h2><i class="fas fa-lock"></i> Posts you've closed.</h2>
+        <p>Here are the links to the post you've closed.</p>
         {% for i in items_closed_by_user %}
         <p class="w3-text-pink"><a href="{% url 'item-detail' pk=i.pk %}"><i class="fas fa-long-arrow-alt-right"></i>
-                {{ i.name }} by {{ i.user.name }}</a></p>
+                {{ i.name }} posted by {{ i.user.name }}</a></p>
         {% endfor %}
         {% endif %}
 
         {% if items_delivered_by_user.count %}
         <hr class="divider">
         <h2><i class="fas fa-motorcycle"></i> Recent items you've delivered.</h2>
+        <p>Here are the links to the posts of items you've delivered recently.</p>
         {% for i in items_delivered_by_user %}
         <p class="w3-text-green"><a href="{% url 'item-detail' pk=i.pk %}"><i class="fas fa-long-arrow-alt-right"></i>
-                {{ i.name }} by {{ i.user.name }}</a></p>
+                {{ i.name }} delivered to {{ i.user.name }}</a></p>
         {% endfor %}
         {% endif %}
     </div>
