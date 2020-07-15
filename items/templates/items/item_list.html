@@ -6,6 +6,7 @@
         display: grid;
         grid-template-columns: 1fr auto;
         align-items: center;
+        margin: 30px 0px;
     }
 
     .address-filter button {
@@ -17,6 +18,15 @@
         justify-content: center;
         align-items: center;
     }
+
+    .address-filter:hover button {
+        background: #2196F3 !important;
+        color: white !important;
+    }
+
+    .address-filter p {
+        margin: 0px !important;
+    }
 </style>
 
 <article class="inside-art w3-container">
@@ -26,7 +36,7 @@
                 <label for="address">Filter Address:</label>
                 <input type="text" name="address" value="{{ request.GET.address }}" />
             </p>
-            <button type="submit" class="w3-button w3-green w3-round"><i class="fas fa-search-location"></i></button>
+            <button type="submit" class="w3-button w3-gray w3-round"><i class="fas fa-search-location"></i></button>
         </form>
     </div>
 </article>
