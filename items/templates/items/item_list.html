@@ -158,8 +158,8 @@
         {% if user_items_closed.count %}
         <hr class="divider">
         <h2><i class="fas fa-lock"></i> Your closed posts.</h2>
-        <p>Here are the links to your posts that have been closed (secured) by other users. The items you posted are on
-            their way already.</p>
+        <p>Here are the links to your posts that have been closed (secured) by other users. These items you posted are
+            on their way already.</p>
         {% for i in user_items_closed %}
         <p class="w3-text-blue"><a href="{% url 'item-detail' pk=i.pk %}"><i class="fas fa-long-arrow-alt-right"></i>
                 {{ i.name }} closed by {{ i.closed_by.name }}</a></p>
