@@ -26,7 +26,7 @@ class ItemsListView(LoginRequiredMixin, ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        queryset = Item.objects.filter(delivered=False)
+        queryset = Item.objects.filter(delivered=False, closed=False)
         
         if 'address' in self.request.GET and self.request.GET['address']:
             get_address = self.request.GET['address']
