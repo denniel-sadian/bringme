@@ -113,7 +113,7 @@
 
         {% if items.count == 0 %}
         <p class="w3-center w3-large"><i class="fas fa-heart-broken w3-text-red"></i> There are no posts with your
-            address or filter. Perhaps, all of them have been closed already.</p>
+            address or filter. Perhaps, all of them have been closed already or nobody's posting yet.</p>
         {% endif %}
 
         {% for i in items %}
@@ -168,7 +168,7 @@
         {% if items_closed_by_user.count %}
         <hr class="divider">
         <h2><i class="fas fa-lock"></i> Posts you've closed.</h2>
-        <p>Here are the links to the post you've closed.</p>
+        <p>Here are the links to the post you've closed. They are not yet marked as delivered by the owners.</p>
         {% for i in items_closed_by_user %}
         <p class="w3-text-pink"><a href="{% url 'item-detail' pk=i.pk %}"><i class="fas fa-long-arrow-alt-right"></i>
                 {{ i.name }} posted by {{ i.user.name }}</a></p>
