@@ -52,6 +52,6 @@ def notify_user_on_post(sender, instance, **kwargs):
         notify_users('Post Canceled', [item.user.email], html_message)
     
     # Delivered
-    if not item.delivered and instance.Delivered:
+    if not item.delivered and instance.delivered:
         html_message = render_to_string('items/notif_delivered.html', {'post': item})
         notify_users('Item Delivered', [item.closed_by.email], html_message)
