@@ -4,9 +4,16 @@ from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
+from django_registration.backends.activation.views import RegistrationView
+
 from .forms import CustomUserCreationForm
 from .forms import CustomUserChangeForm
+from .forms import CustomUserForm
 from .models import CustomUser
+
+
+class UserRegisterView(RegistrationView):
+    form_class = CustomUserForm
 
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
