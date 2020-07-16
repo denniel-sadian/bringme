@@ -165,6 +165,7 @@
             object-fit: cover;
             margin-right: 4px;
             border-radius: 100%;
+            border: 1px solid #fff;
         }
 
         /**************************/
@@ -220,18 +221,17 @@
                 <button id="toggle-btn"><i class="fas fa-bars"></i></button>
                 <div class="links">
                     <div>
-                        <a href="{% url 'items-list' %}" class="w3-text-blue"><i class="fas fa-info-circle"></i>
+                        <a href="{% url 'items-list' %}"><i class="fas fa-info-circle"></i>
                             About</a>
                         {% if user.is_authenticated %}
-                        <a href="{% url 'items-list' %}" class="w3-text-green"><i class="fas fa-shopping-bag"></i>
+                        <a href="{% url 'items-list' %}"><i class="fas fa-shopping-bag"></i>
                             Items</a>
-                        <a href="{% url 'profile-update' %}" class="w3-text-orange user">
+                        <a href="{% url 'profile-update' %}" class="user">
                             <img src="{{ user.photo.url }}"> {{ user.name }}</a>
                         {% else %}
-                        <a href="{% url 'django_registration_register' %}" class="w3-text-green"><i
-                                class="fas fa-user-plus"></i>
+                        <a href="{% url 'django_registration_register' %}"><i class="fas fa-user-plus"></i>
                             Register</a>
-                        <a href="{% url 'login' %}" class="w3-text-pink"><i class="fas fa-sign-in-alt"></i>
+                        <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>
                             Login</a>
                         {% endif %}
                     </div>
