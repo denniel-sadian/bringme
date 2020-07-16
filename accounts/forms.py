@@ -11,6 +11,13 @@ class CustomUserForm(RegistrationForm):
         fields = ('email', 'name', 'address', 'contact_number', 'photo')
 
 
+class CustomUserCreationForm(UserCreationForm):
+
+    class Meta(UserCreationForm):
+        model = CustomUser
+        fields = ('email', 'name', 'address', 'contact_number', 'photo')
+
+
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
