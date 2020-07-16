@@ -21,8 +21,9 @@ class CustomUserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
-        
         user.is_active = False
+        user.save()
+
         subject = 'Activate Your Account'
         message = render_to_string('accounts/activation_email.html', {
             'user': user,
@@ -30,8 +31,7 @@ class CustomUserManager(BaseUserManager):
             'token': account_activation_token.make_token(user),
         })
         user.email_user(subject, message, html_message=message)
-        
-        user.save()
+
         return user
 
     def create_superuser(self, email, password, **extra_fields):
