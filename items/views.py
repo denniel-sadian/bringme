@@ -36,7 +36,7 @@ class ItemsListView(LoginRequiredMixin, ListView):
             user_address = self.request.user.address
             queryset = queryset.filter(user__address__icontains=user_address)
         
-        return queryset
+        return queryset.order_by('-pk')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
