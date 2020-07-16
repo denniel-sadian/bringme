@@ -3,13 +3,10 @@ from django.views.generic import View
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.utils.encoding import force_text
-from django.utils.http import urlsafe_base64_decode
 
 from .forms import CustomUserCreationForm
 from .forms import CustomUserChangeForm
 from .models import CustomUser
-from .tokens import account_activation_token
 
 
 class RegisterView(CreateView):
