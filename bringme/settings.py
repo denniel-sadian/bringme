@@ -29,7 +29,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'bringme.pythonanywhere.com'
+]
 
 
 # Application definition
@@ -115,18 +117,18 @@ ACCOUNT_ACTIVATION_DAYS = 7
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #    'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    # },
-    # {
-    #    'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    # },
-    # {
-    #    'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    # },
-    # {
-    #    'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    # },
+    {
+       'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+       'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+       'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+       'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
 
