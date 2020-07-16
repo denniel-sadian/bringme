@@ -1,9 +1,11 @@
+-f /usr/share/pip-wheels
 confusable-homoglyphs==3.2.0
 Django==2.2.14
 django-registration==3.1
 django-resized==0.3.11
 django-sendgrid-v5==0.8.1
 future==0.18.2
+mysqlclient==2.0.1
 Pillow==7.2.0
 python-dotenv==0.14.0
 python-http-client==3.2.7
