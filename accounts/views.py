@@ -18,23 +18,6 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('login')
 
 
-class ActivateAccount(View):
-
-    def get(self, request, uidb64, token, *args, **kwargs):
-        try:
-            uid = force_text(urlsafe_base64_decode(uidb64))
-            user = CustomUser.objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
-            user = None
-
-        if user is not None and account_activation_token.check_token(user, token):
-            user.is_active = True
-            user.save()
-            return redirect('https://bognuyan-nhs.now.sh/registration/verified/')
-        else:
-            return redirect('https://bognuyan-nhs.now.sh/registration/error/')
-
-
 class UpdateUserView(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
     success_url = reverse_lazy('profile-update')
