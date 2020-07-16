@@ -63,7 +63,8 @@
     {% if user.is_authenticated %}
     <p class="w3-large">Hello, {{ user.name }}!</p>
     {% else %}
-    <p class="w3-large">Hello, visitor! <a href="{% url 'register' %}" class="w3-text-blue">Register</a> an
+    <p class="w3-large">Hello, visitor! <a href="{% url 'django_registration_register' %}"
+            class="w3-text-blue">Register</a> an
         account now! Or <a href="{% url 'login' %}" class="w3-text-blue">login</a>!</p>
     {% endif %}
 </header>

@@ -228,7 +228,8 @@
                         <a href="{% url 'profile-update' %}" class="w3-text-orange user">
                             <img src="{{ user.photo.url }}"> {{ user.name }}</a>
                         {% else %}
-                        <a href="{% url 'register' %}" class="w3-text-green"><i class="fas fa-user-plus"></i>
+                        <a href="{% url 'django_registration_register' %}" class="w3-text-green"><i
+                                class="fas fa-user-plus"></i>
                             Register</a>
                         <a href="{% url 'login' %}" class="w3-text-pink"><i class="fas fa-sign-in-alt"></i>
                             Login</a>
