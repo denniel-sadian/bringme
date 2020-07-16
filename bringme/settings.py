@@ -99,6 +99,11 @@ DATABASES = {
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
+# Django-Registration
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
