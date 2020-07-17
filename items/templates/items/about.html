@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .inside-art img:first-child {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .photo {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+    }
+
+    img {
+        border-radius: 8px;
+    }
+
+    .photo img {
+        max-width: 50px;
+        max-height: 50px;
+        object-fit: cover;
+        border-radius: 100%;
+        margin-right: 8px;
+    }
+
+    .photo p {
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0px;
+    }
+</style>
+
+<article class="w3-container inside-art">
+    <div class="w3-content">
+        <h1>About</h1>
+    </div>
+</article>
+{% endblock %}
