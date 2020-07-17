@@ -20,6 +20,10 @@ class HomeView(TemplateView):
     template_name = 'items/home.html'
 
 
+class AboutView(TemplateView):
+    template_name = 'items/about.html'
+
+
 class ItemsListView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     context_object_name = 'items'
