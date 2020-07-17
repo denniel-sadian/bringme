@@ -240,7 +240,7 @@
                             About</a>
                         {% if user.is_authenticated %}
                         <a href="{% url 'items-list' %}"><i class="fas fa-shopping-bag"></i>
-                            Items</a>
+                            Posts</a>
                         <a href="{% url 'profile-update' %}" class="user">
                             <img src="{{ user.photo.url }}"> {{ user.name }}
                             {% if user.is_rider %}<i class="fas fa-motorcycle"></i>{% endif %}
