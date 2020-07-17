@@ -161,7 +161,7 @@
 
         .user {
             display: grid;
-            grid-template-columns: auto 1fr;
+            grid-template-columns: auto 1fr auto;
             align-items: center;
         }
 
@@ -172,6 +172,11 @@
             margin-right: 4px;
             border-radius: 100%;
             border: 1px solid #fff;
+        }
+
+        .user i {
+            margin-left: 8px;
+            color: #ffeb3b;
         }
 
         /**************************/
@@ -206,6 +211,10 @@
                 width: 100%;
                 margin: 0px;
             }
+
+            .user {
+                width: auto !important;
+            }
         }
 
         @media screen and (max-width: 500px) {
@@ -233,7 +242,9 @@
                         <a href="{% url 'items-list' %}"><i class="fas fa-shopping-bag"></i>
                             Items</a>
                         <a href="{% url 'profile-update' %}" class="user">
-                            <img src="{{ user.photo.url }}"> {{ user.name }}</a>
+                            <img src="{{ user.photo.url }}"> {{ user.name }}
+                            {% if user.is_rider %}<i class="fas fa-motorcycle"></i>{% endif %}
+                        </a>
                         {% else %}
                         <a href="{% url 'django_registration_register' %}"><i class="fas fa-user-plus"></i>
                             Register</a>
