@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
+{% block title %}/ {{ item.name }}{% endblock %}
+
+{% block description %}
+{{ item.description }}
+{% endblock %}
+
+{% block image %}
+{{ item.photo.url }}
+{% endblock %}
+
 {% block content %}
 <style>
     .inside-art img:first-child {
