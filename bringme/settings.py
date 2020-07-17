@@ -30,7 +30,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'bringme.pythonanywhere.com'
+    'bringme.pythonanywhere.com',
+    'localhost:8000'
 ]
 
 
