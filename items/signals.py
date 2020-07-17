@@ -26,9 +26,9 @@ def notify_users_on_new_post(sender, instance, created, **kwargs):
     address = instance.user.address
     
     to_emails = []
-    for user in CustomUser.objects.all():
-        if user.address in address and user != instance.user:
-            to_emails.append(user.email)
+    for rider in CustomUser.objects.filter(is_rider=True):
+        if rider.address in address and rider != instance.user:
+            to_emails.append(rider.email)
     
     html_message = render_to_string('items/notif_new_post.html', {'post': instance})
     notify_users('New Post Near You', to_emails, html_message)
