@@ -106,6 +106,7 @@ Here are the posts near you.
 
 <article class="inside-art w3-container">
     <div class="w3-content">
+        {% if user.is_rider %}
         <form method="get" class="address-filter">
             <p>
                 <label for="address">Filter Address:</label>
@@ -113,6 +114,7 @@ Here are the posts near you.
             </p>
             <button type="submit" class="w3-button w3-gray w3-round"><i class="fas fa-search-location"></i></button>
         </form>
+        {% endif %}
 
         {% if not user.is_rider %}
         <a href="{% url 'item-create' %}" class="w3-button w3-block w3-green w3-round-large"><i
