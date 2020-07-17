@@ -105,7 +105,7 @@
         <p><b class="w3-text-pink w3-large">Description:</b> {{ item.description }}</p>
         <p><b class="w3-text-pink w3-large">Expected Price:</b> {{ item.expected_price }}</p>
         <p><b class="w3-text-pink w3-large">Expected Store:</b> {{ item.expected_store }}</p>
-        {% if user != item.user and item.closed == False %}
+        {% if user != item.user and not item.closed and user.is_rider %}
         <div class="w3-card-4 w3-khaki w3-round-large w3-padding">
             <p>Do you know this item, and you know where to buy it, and the store is near you? Do you want to deliver
                 this? Close it now!</p>
