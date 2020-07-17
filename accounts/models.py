@@ -21,6 +21,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     contact_number = models.CharField(max_length=12)
     photo = ResizedImageField(size=[400, 400], upload_to='profiles', force_format='PNG')
     deliveries = models.IntegerField(default=0)
+    is_rider = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
