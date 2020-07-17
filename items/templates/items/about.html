@@ -1,41 +1,35 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 <style>
-    .inside-art img:first-child {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-    }
-
-    .photo {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        align-items: center;
-    }
-
-    img {
+    .inside-art img {
         border-radius: 8px;
-    }
-
-    .photo img {
-        max-width: 50px;
-        max-height: 50px;
-        object-fit: cover;
-        border-radius: 100%;
-        margin-right: 8px;
-    }
-
-    .photo p {
-        font-weight: bold;
-        font-size: 16px;
-        margin: 0px;
+        max-width: 500px;
+        height: auto;
     }
 </style>
 
 <article class="w3-container inside-art">
     <div class="w3-content">
-        <h1>About</h1>
+        <h1><i class="fas fa-info-circle w3-text-blue"></i> About</h1>
+        <p><b class="w3-large">BringMe</b> is a website where users can be both a
+            rider or a recipient. How can you use this website? For example, you're a teenager who lives in Gasan,
+            Marinduque and you have something important to buy at Mercury Drug Store which is in Boac. You won't be able
+            to buy at Mercury Drug Store because you're not yet 21 -- the police might catch you. So you post your item
+            on this website.</p>
+        <p class="w3-center">
+            <img src="{% static 'post.png' %}">
+        </p>
+        <p>Other users who live in Boac will see them, and they can decide whether to deliver to you your item or not.
+            Other users can earn from delivering items because they will ask for their pay. You pay the other users
+            according to how much they bought your item and how much they charge you for their service.</p>
+        <p>You will be notified through your email. If you're a rider, an email will be sent to you containing the link
+            to new posts near you. If you're a recipient and a rider closed your post (secured your post), you will be
+            emailed that your post has been closed and your item is probably on its way.</p>
+        <p>This website was built using Python and Django. It's repository is <a
+                href="https://github.com/denniel-sadian/bringme/" class="w3-text-blue" target="_blank">here</a>.</p>
     </div>
 </article>
 {% endblock %}
