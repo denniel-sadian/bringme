@@ -27,21 +27,19 @@
             <h1>{{ form.instance.name }}</h1>
             <p><i class="fas fa-mail-bulk"></i> {{ form.instance.email }}</p>
         </div>
-        {% if not form.instance.is_rider %}
         <div class="w3-padding w3-round-large w3-pale-blue w3-margin-bottom">
+            {% if not form.instance.is_rider %}
             <p><b class="w3-text-blue"><i class="fas fa-info-circle"></i> Note:</b><br>
                 It's much better to type your
                 complete address so the riders can see your posts. Please make sure that you type your address correctly
                 as well.</p>
-        </div>
-        {% else %}
-        <div class="w3-padding w3-round-large w3-pale-blue w3-margin-bottom">
+            {% else %}
             <p><b class="w3-text-blue"><i class="fas fa-info-circle"></i> Note:</b><br>
                 You don't need to enter your complete address. If you live in Masiga, Gasan, Marinduque, you can just
                 enter Marinduque or Gasan or Masiga. You won't be able to post because you are a rider.
             </p>
+            {% endif %}
         </div>
-        {% endif %}
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <p>
