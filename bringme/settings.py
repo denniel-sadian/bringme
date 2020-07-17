@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'bringme.pythonanywhere.com',
-    'localhost:8000'
+    '127.0.0.1'
 ]
 
 
