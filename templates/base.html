@@ -4,6 +4,11 @@
 <html>
 
 <head>
+    <title>BringMe {% block title %}{% endblock %}</title>
+    <meta name="description"
+        content="{% block description %}Help by posting. Help by delivering. Help everyone!{% endblock %}">
+    <meta name="og:image"
+        content="https://bringme.pythonanywhere.com{% block image %}{% static 'brand_black.png' %}{% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'w3.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
