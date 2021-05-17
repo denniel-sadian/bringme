@@ -10,13 +10,6 @@ quarantine.
 {% endblock %}
 
 {% block content %}
-<style>
-    .inside-art img {
-        border-radius: 8px;
-        max-width: 500px;
-        height: auto;
-    }
-</style>
 
 <article class="w3-container inside-art">
     <div class="w3-content">
@@ -27,7 +20,7 @@ quarantine.
             to buy at Mercury Drug Store because you're not yet 21 -- the police might catch you. So you post your item
             on this website.</p>
         <p class="w3-center">
-            <img src="{% static 'post.png' %}">
+            <img src="{% static 'post.png' %}" class="w3-image">
         </p>
         <p>Other users who live in Boac will see them, and they can decide whether to deliver to you your item or not.
             Other users can earn from delivering items because they will ask for their pay. You pay the other users
