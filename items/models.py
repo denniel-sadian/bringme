@@ -11,7 +11,7 @@ class Item(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     photo = ResizedImageField(size=[600, 600], upload_to='items', force_format='PNG')
-    expected_price = models.IntegerField(default=0)
+    expected_price = models.PositiveIntegerField(default=0)
     expected_store = models.CharField(max_length=255)
     date = models.DateTimeField(auto_now_add=True)
     delivered = models.BooleanField(default=False)
