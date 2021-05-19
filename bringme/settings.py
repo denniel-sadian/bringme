@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'django_registration',
+    'phonenumber_field',
 
     'accounts',
     'items.apps.ItemsConfig'
