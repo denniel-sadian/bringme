@@ -42,3 +42,7 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
 
     def get_object(self):
         return self.request.user
+
+
+class PasswordResetView(PassResetView):
+    html_email_template_name = 'registration/password_reset_email.html'
