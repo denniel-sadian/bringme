@@ -63,7 +63,7 @@
 <body>
     <article>
         <header class="w3-black">
-            <img src="{{ STATIC_PREFIX }}{% static 'wave.png' %}">
+            <img src="{{ protocol }}://{{ domain }}{% static 'wave.png' %}">
             <h2>BringMe Website</h2>
         </header>
         {% block message %} {% endblock %}
