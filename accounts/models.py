@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.core.mail import send_mail
 
 from django_resized import ResizedImageField
+from phonenumber_field.modelfields import PhoneNumberField
 
 from .managers import CustomUserManager
 
@@ -18,7 +19,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     name = models.CharField(max_length=30)
     address = models.CharField(max_length=255)
-    contact_number = models.CharField(max_length=12)
+    contact_number = PhoneNumberField(max_length=14)
     photo = ResizedImageField(size=[400, 400], upload_to='profiles', force_format='PNG')
     deliveries = models.IntegerField(default=0)
     is_rider = models.BooleanField(default=False)
