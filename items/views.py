@@ -100,10 +100,10 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'items/item_update.html'
 
     def dispatch(self, *args, **kwargs):
-        """
-        Don't let users update items if they've been closed already.
-        """
-        if self.get_object().closed:
+        post = self.get_object()
+        
+        # Don't update closed posts.
+        if post.closed:
             return redirect(reverse_lazy('items-list'))
         return super().dispatch(*args, **kwargs)
 
