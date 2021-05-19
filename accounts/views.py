@@ -19,6 +19,20 @@ from .emails import ActivationEmail
 class UserRegisterView(RegistrationView):
     form_class = CustomUserForm
 
+    def send_activation_email(self, user):
+        activation_key = self.get_activation_key(user)
+        context = self.get_email_context(activation_key)
+        ActivationEmail(user, context).send()
+
+
+class AccountActivationView(ActivationView):
+    success_url = reverse_lazy('home')
+
+    def activate(self, *args, **kwargs):
+        user = super().activate(*args, **kwargs)
+        login(self.request, user)
+        return user
+
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
