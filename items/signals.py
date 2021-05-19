@@ -8,6 +8,10 @@ from django.utils.html import strip_tags
 
 from .models import Item
 from accounts.models import CustomUser
+from accounts.emails import NewPostNotif
+from accounts.emails import ClosedPostNotif
+from accounts.emails import ItemDeliveredNotif
+from accounts.emails import ItemCancelledNotif
 
 
 def notify_users(subject, to, html_message):
@@ -23,15 +27,7 @@ def notify_users_on_new_post(sender, instance, created, **kwargs):
     if not created:
         return
     
-    address = instance.user.address
-    
-    to_emails = []
-    for rider in CustomUser.objects.filter(is_rider=True):
-        if rider.address in address and rider != instance.user:
-            to_emails.append(rider.email)
-    
-    html_message = render_to_string('items/notif_new_post.html', {'post': instance})
-    notify_users('New Post Near You', to_emails, html_message)
+    NewPostNotif(instance).send()
 
 
 @receiver(pre_save, sender=Item)
@@ -43,15 +39,12 @@ def notify_user_on_post(sender, instance, **kwargs):
 
     # Closed
     if not item.closed and instance.closed:
-        html_message = render_to_string('items/notif_closed_post.html', {'post': instance})
-        notify_users('Post Closed', [item.user.email], html_message)
+        ClosedPostNotif(instance).send()
     
     # Canceled
     elif item.closed and not instance.closed:
-        html_message = render_to_string('items/notif_undo.html', {'post': item})
-        notify_users('Post Canceled', [item.user.email], html_message)
+        ItemCancelledNotif(instance).send()
     
     # Delivered
     if not item.delivered and instance.delivered:
-        html_message = render_to_string('items/notif_delivered.html', {'post': item})
-        notify_users('Item Delivered', [item.closed_by.email], html_message)
+        ItemDeliveredNotif(instance).send()
