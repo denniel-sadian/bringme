@@ -173,7 +173,7 @@ class ItemMarkDeliveredView(LoginRequiredMixin, SingleObjectMixin, View):
     def post(self, request, *args, **kwargs):
         item = self.get_object()
         item.delivered = True
-        item.closed_by.deliveries = item.closed_by.deliveries + 1
+        item.closed_by.deliveries += 1
         item.closed_by.save()
         item.save()
         return redirect(reverse_lazy('items-list'))
