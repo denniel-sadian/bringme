@@ -105,6 +105,11 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
         # Don't update closed posts.
         if post.closed:
             return redirect(reverse_lazy('items-list'))
+        
+        # Only owners will update their posts.
+        if self.request.user != post.user:
+            return redirect(reverse_lazy('items-list'))
+
         return super().dispatch(*args, **kwargs)
 
 
