@@ -81,6 +81,13 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
     fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
     template_name = 'items/item_create.html'
 
+    def dispatch(self, *args, **kwargs):
+        # Don't let riders create posts.
+        if self.request.user.is_rider:
+            return redirect(reverse_lazy('items-list'))
+
+        return super().dispatch(*args, **kwargs)
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
