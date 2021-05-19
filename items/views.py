@@ -32,13 +32,21 @@ class ItemsListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Item.objects.filter(delivered=False, closed=False)
         
-        if 'address' in self.request.GET and self.request.GET['address']:
-            get_address = self.request.GET['address']
-            get_address = get_address.upper().replace(' ', '')
-            queryset = queryset.filter(user__address__icontains=get_address)
+        # The user is a rider.
+        if self.request.user.is_rider:
+            # Get posts based from the given filter.
+            if 'address' in self.request.GET and self.request.GET['address']:
+                get_address = self.request.GET['address']
+                get_address = get_address.upper().replace(' ', '')
+                queryset = queryset.filter(user__address__icontains=get_address)
+            # Get post based from the rider's address.
+            else:
+                user_address = self.request.user.address
+                queryset = queryset.filter(user__address__icontains=user_address)
+        
+        # The user is just a regular user, so just get his or her posts.
         else:
-            user_address = self.request.user.address
-            queryset = queryset.filter(user__address__icontains=user_address)
+            queryset = queryset.filter(user=self.request.user)
         
         return queryset.order_by('-pk')
     
