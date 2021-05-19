@@ -30,6 +30,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = json.loads(os.getenv('DEBUG', 'false'))
 
+USE_HTTPS = json.loads(os.getenv('USE_HTTPS', 'false'))
+
+SITE_ID = os.getenv('SITE_ID', 1)
+
 ALLOWED_HOSTS = json.loads(
     os.getenv('ALLOWED_HOSTS', '["localhost", "127.0.0.1", "[::1]"]'))
 
