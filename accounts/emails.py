@@ -98,3 +98,30 @@ class ItemDeliveredNotif(PostInstanceMixin, BaseTemplatedHTMLEmailMessageView):
     def render_to_message(self, *args, **kwargs):
         kwargs['to'] = (self.post.closed_by.email,)
         return super().render_to_message(*args, **kwargs)
+
+
+class ActivationEmail(BaseTemplatedHTMLEmailMessageView):
+    subject_template_name = 'accounts/emails/activation/subject.txt'
+    body_template_name = 'accounts/emails/activation/body.txt'
+    html_body_template_name = (
+        'accounts/emails/activation/body.html')
+    
+    def __init__(self, user, context, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user
+        self.context = context
+
+    def get_context_data(self, **kwargs):
+        context = {
+            'user': self.user,
+            'site': self.context['site'],
+            'scheme': self.context['scheme'],
+            'activation_key': self.context['activation_key']
+        }
+        context.update(kwargs)
+
+        return super().get_context_data(**context)
+    
+    def render_to_message(self, *args, **kwargs):
+        kwargs['to'] = (self.user.email,)
+        return super().render_to_message(*args, **kwargs)
