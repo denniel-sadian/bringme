@@ -28,5 +28,4 @@ urlpatterns = [
         'profile-update/',
         views.UpdateUserView.as_view(),
         name='profile-update'),
-    path('testing/', TemplateView.as_view(template_name='accounts/test.html'))
 ]
