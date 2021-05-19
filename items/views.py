@@ -119,12 +119,11 @@ class ItemDeleteView(LoginRequiredMixin, DeleteView):
     model = Item
 
     def dispatch(self, *args, **kwargs):
-        """
-        Don't let users delete items if they've been closed already
-        or they're not the owner of the item.
-        """
-        item = self.get_object()
-        if item.closed or item.user != self.request.user:
+        post = self.get_object()
+        
+        # Don't let users delete items if they've been closed already
+        # or they're not the owner of the post.
+        if post.closed or post.user != self.request.user:
             return redirect(reverse_lazy('items-list'))
         return super().dispatch(*args, **kwargs)
 
