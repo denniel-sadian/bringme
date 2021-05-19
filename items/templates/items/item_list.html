@@ -122,9 +122,14 @@ Here are the posts near you.
             Post</a>
         {% endif %}
 
-        {% if items.count == 0 %}
+        {% if items.count == 0 and user.is_rider %}
         <p class="w3-center w3-large"><i class="fas fa-heart-broken w3-text-red"></i> There are no posts with your
             address or filter. Perhaps, all of them have been closed already or nobody's posting yet.</p>
+        {% elif items.count == 0 %}
+        <p class="w3-center w3-large"><i class="fas fa-info-circle w3-text-blue"></i> You have no posts yet.</p>
+        {% elif not user.is_rider %}
+        <p class="w3-center w3-large"><i class="fas fa-info-circle w3-text-blue"></i> You and the riders near you will
+            only see your post.</p>
         {% endif %}
 
         {% for i in items %}
@@ -132,9 +137,14 @@ Here are the posts near you.
             <div class="top">
                 <img src="{{ i.user.photo.url }}">
                 <div>
-                    <p class="w3-large"><b class="w3-text-pink">{{ i.user.name }}</b> from <b>{{ i.user.address }}</b>
+                    <p class="w3-large">
+                        <b class="w3-text-pink">
+                            {% if user == i.user %} You {% else %} {{ i.user.name }} {% endif %}
+                        </b>
+                        from <b>{{ i.user.address }}</b>
                         <br><span class="w3-small"><i class="far fa-clock"></i>
-                            {{ i.date }}</span></p>
+                            {{ i.date }}</span>
+                    </p>
                 </div>
             </div>
             <div class="text">
