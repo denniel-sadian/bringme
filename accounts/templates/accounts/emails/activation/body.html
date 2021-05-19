@@ -1,0 +1,35 @@
+{% extends 'accounts/emails/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<style type="text/css">
+    section {
+        font-family: 'Nunito';
+        padding: 0px 10px 0px 10px;
+    }
+
+    .btns {
+        text-align: right;
+    }
+
+    section .btns {
+        text-align: right;
+    }
+
+    h3 {
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block message %}
+<section>
+    <p>Good Day, {{ user.name }}!</p>
+    <p>You registered an account on our website, but it's not yet activated. Activate it now!</p>
+    <p class="btns">
+        <a href="{{ scheme }}://{{ site }}{% url 'django_registration_activate' activation_key=activation_key %}"
+            class="w3-button w3-round-xxlarge w3-green"><i class="fa fa-check-circle"></i> Activate</a>
+    </p>
+</section>
+{% endblock %}
