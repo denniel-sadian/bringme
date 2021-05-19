@@ -1,0 +1,57 @@
+{% extends 'accounts/emails/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<style type="text/css">
+    section {
+        font-family: 'Nunito';
+        padding: 0px 10px 0px 10px;
+    }
+
+    .identity {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .dp {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+
+    .btns {
+        text-align: right;
+    }
+
+    section a {
+        color: blue;
+    }
+</style>
+{% endblock %}
+
+{% block message %}
+<section>
+    <p>Good Day! Your post <b>"{{ post.name }}"</b> has been closed by:</p>
+    <div class="identity">
+        <img src="{{ STATIC_PREFIX }}{{ post.closed_by.photo.url }}" alt="{{ post.name }}" class="dp">
+        <p>
+            <b class="w3-large">{{ post.closed_by.name }}</b> <br>
+            {{ post.closed_by.contact_number }} <br>
+            {{ post.closed_by.email }} <br>
+            Success Deliveries: <b class="w3-green w3-tag w3-round">{{ post.closed_by.deliveries }}</b>
+        </p>
+    </div>
+    <p>It means, the item you posted is on its way. Please pay the rider according to his service. That would be
+        cash-on-delivery, since that's the only transaction possible on the website.</p>
+    <p>
+    <div class='btns'>
+        <a href="{{ protocol }}://{{ domain }}{{ post.get_absolute_url }}"><i class="fas fa-long-arrow-alt-right"></i>
+            View</a>
+    </div>
+    </p>
+</section>
+{% endblock %}

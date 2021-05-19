@@ -1,0 +1,47 @@
+{% extends 'accounts/emails/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<style type="text/css">
+    section {
+        font-family: 'Nunito';
+        padding: 0px 10px 0px 10px;
+    }
+
+    .identity {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .dp {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+
+    .btns {
+        text-align: right;
+    }
+
+    section a {
+        color: blue;
+    }
+</style>
+{% endblock %}
+
+{% block message %}
+<section>
+    <p>Good Day! Your post <b>"{{ post.name }}"</b> has been cancelled by the rider. It means, the item you posted is,
+        once again, open for other riders to close.</p>
+    <p>
+    <div class='btns'>
+        <a href="{{ protocol }}://{{ domain }}{{ post.get_absolute_url }}"><i class="fas fa-long-arrow-alt-right"></i>
+            View</a>
+    </div>
+    </p>
+</section>
+{% endblock %}

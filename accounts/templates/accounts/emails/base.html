@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1">
+    <link href="{{ STATIC_PREFIX }}{% static 'w3.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/209b41c676.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap">
+    <style type="text/css">
+        article {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 400px;
+            padding: 16px;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid gray;
+            padding-top: 16px;
+        }
+
+        header h2 {
+            font-family: 'Roboto Slab', serif !important;
+        }
+
+        header img {
+            width: 80px;
+            height: auto;
+        }
+
+        section {
+            font-family: 'Nunito';
+        }
+
+        .item-pic {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        section a {
+            color: blue;
+        }
+
+        footer>p:last-child {
+            text-align: center;
+        }
+
+        footer a {
+            color: lightblue;
+        }
+    </style>
+    {% block styles %} {% endblock %}
+</head>
+
+<body>
+    <article>
+        <header class="w3-black">
+            <img src="{{ STATIC_PREFIX }}{% static 'wave.png' %}">
+            <h2>BringMe Website</h2>
+        </header>
+        {% block message %} {% endblock %}
+        <footer class="w3-black w3-padding w3-small">
+            <p>You are receiving this notification because you registered an account on <a
+                    href="{{ protocol }}://{{ domain }}">BringMe</a>.</p>
+            <p>BringMe <i class="far fa-copyright"></i> 2021</p>
+        </footer>
+    </article>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+{% extends 'accounts/emails/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<style type="text/css">
+    section {
+        font-family: 'Nunito';
+        padding: 0px 10px 0px 10px;
+    }
+
+    .item-pic {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .btns {
+        text-align: right;
+    }
+
+    section a {
+        color: blue;
+    }
+</style>
+{% endblock %}
+
+{% block message %}
+<section>
+    <p>Good Day! <b>{{ post.user.name }}</b> posted an item. View it quickly so you can secure it.</p>
+    <img src="{{ STATIC_PREFIX }}{{ post.photo.url }}" alt="{{ post.name }}" class="item-pic">
+    <p>
+        <b class="w3-text-pink">Item Name:</b> {{ post.name }} <br>
+        <b class="w3-text-pink">Expected Store:</b> {{ post.expected_store }} <br>
+        <b class="w3-text-pink">Expected Price:</b> {{ post.expected_price }} <br>
+        <b class="w3-text-pink">Description:</b> {{ post.description }}
+    <div class='btns'>
+        <a href="{{ protocol }}://{{ domain }}{{ post.get_absolute_url }}"><i class="fas fa-long-arrow-alt-right"></i>
+            View</a>
+    </div>
+    </p>
+</section>
+{% endblock %}

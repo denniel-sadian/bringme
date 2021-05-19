@@ -1,0 +1,35 @@
+{% extends 'accounts/emails/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<style type="text/css">
+    section {
+        font-family: 'Nunito';
+        padding: 0px 10px 0px 10px;
+    }
+
+    .btns {
+        text-align: right;
+    }
+
+    section a {
+        color: blue;
+    }
+
+    h3 {
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block message %}
+<section>
+    <p>Good Day, {{ post.closed_by.name }}!</p>
+    <p><b>{{ post.user.name }}</b> has recognized that the item in the post <b>"{{ post.name }}"</b> has been
+        delivered already.</p>
+    <h3>Your Success Deliveries:<br><b class="w3-tag w3-green w3-round">{{ post.closed_by.deliveries }}</b></h3>
+    <p>The number above is your reputation as a rider.</p>
+    <p>Congratulations!</p>
+</section>
+{% endblock %}
