@@ -182,6 +182,9 @@ EMAIL_BACKEND = os.getenv(
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
+SENDGRID_SANDBOX_MODE_IN_DEBUG = json.loads(
+    os.getenv('SENDGRID_SANDBOX_MODE_IN_DEBUG', 'false'))
+
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 EMAIL_HOST = os.getenv('EMAIL_HOST', '127.0.0.1')
