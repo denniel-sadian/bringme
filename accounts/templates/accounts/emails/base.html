@@ -48,9 +48,10 @@
             background: black;
             color: white;
             padding: 2px 16px;
+            font-size: 12px;
         }
 
-        footer>p:last-child {
+        .last {
             text-align: center;
         }
 
@@ -119,7 +120,7 @@
         <footer>
             <p>You are receiving this notification because you registered an account on <a
                     href="{{ protocol }}://{{ domain }}">BringMe</a>.</p>
-            <p>BringMe - 2021</p>
+            <p class="last">BringMe - 2021</p>
         </footer>
     </article>
 </body>
