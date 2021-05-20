@@ -60,7 +60,8 @@ class NewPostNotif(PostInstanceMixin, BaseTemplatedHTMLEmailMessageView):
         address = self.post.user.address
         to_emails = set()
         for rider in CustomUser.objects.filter(is_rider=True):
-            if rider.address in address and rider != self.post.user:
+            rider_addr = rider.address.split(',')[-1]
+            if rider_addr in address and rider != self.post.user:
                 to_emails.add(rider.email)
         
         kwargs['to'] = to_emails
