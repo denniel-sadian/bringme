@@ -65,15 +65,6 @@ class ItemDetailView(LoginRequiredMixin, DetailView):
     login_url = reverse_lazy('login')
     model = Item
 
-    def dispatch(self, *args, **kwargs):
-        post = self.get_object()
-        
-        # Don't view if user is not a rider and not the owner.
-        if not self.request.user.is_rider and post.user != self.request.user:
-            return redirect(reverse_lazy('items-list'))
-
-        return super().dispatch(*args, **kwargs)
-
 
 class ItemCreateView(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
