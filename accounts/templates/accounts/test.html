@@ -13,8 +13,8 @@
         text-align: right;
     }
 
-    section a {
-        color: blue;
+    section .btns {
+        text-align: right;
     }
 
     h3 {
@@ -25,11 +25,10 @@
 
 {% block message %}
 <section>
-    <p>Good Day, {{ post.closed_by.name }}!</p>
-    <p><b>{{ post.user.name }}</b> has recognized that the item in the post <b>"{{ post.name }}"</b> has been
-        delivered already.</p>
-    <h3>Your Success Deliveries:<br><b class="w3-tag w3-green w3-round">{{ post.closed_by.deliveries }}</b></h3>
-    <p>The number above is your reputation as a rider.</p>
-    <p>Congratulations!</p>
+    <p>Good Day, {{ user.name }}!</p>
+    <p>You registered an account on our website, but it's not yet activated. Activate it now!</p>
+    <p class="btns">
+        <a href="" class="w3-button w3-round-xxlarge w3-green"><i class="fa fa-check-circle"></i> Activate</a>
+    </p>
 </section>
 {% endblock %}
