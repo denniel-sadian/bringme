@@ -41,7 +41,7 @@ class ItemsListView(LoginRequiredMixin, ListView):
                 queryset = queryset.filter(user__address__icontains=get_address)
             # Get post based from the rider's address.
             else:
-                user_address = self.request.user.address
+                user_address = self.request.user.address.split(',')[-1]
                 queryset = queryset.filter(user__address__icontains=user_address)
         
         # The user is just a regular user, so just get his or her posts.
