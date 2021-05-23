@@ -14,7 +14,43 @@
         <h1><i class="fas fa-user-plus w3-text-pink"></i> Register</h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            <p>
+                <label for="id_email">Email:</label>
+                {{ form.email }}
+                {{ form.email.errors }}
+            </p>
+            <p>
+                <label for="id_name">Name:</label>
+                {{ form.name }}
+            </p>
+            <p>
+                <label for="id_address">Address:</label>
+                {{ form.address }}
+            </p>
+            <p>
+                <label for="id_contact_number">Contact Number:</label>
+                {{ form.contact_number }}
+                {{ form.contact_number.errors }}
+            </p>
+            <p>
+                <label for="id_photo">Profile Picture:</label>
+                {{ form.photo }}
+                {{ form.photo.errors }}
+            </p>
+            <label class="checky">Is Rider
+                {{ form.is_rider }}
+                <span class="checkmark"></span>
+            </label>
+            <p>
+                <label for="id_contact_number">Password:</label>
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+            </p>
+            <p>
+                <label for="id_contact_number">Password Confirmation:</label>
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+            </p>
             <hr>
             <div class="w3-right-align">
                 <a href="{% url 'login' %}" class="w3-button w3-card w3-round-large"><i class="fas fa-sign-in-alt"></i>
