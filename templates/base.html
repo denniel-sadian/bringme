@@ -236,19 +236,19 @@
                 <button id="toggle-btn"><i class="fas fa-bars"></i></button>
                 <div class="links">
                     <div>
-                        <a href="{% url 'about' %}"><i class="fas fa-info-circle"></i>
+                        <a href="{% url 'about' %}"><i class="fas fa-info-circle w3-text-blue"></i>
                             About</a>
                         {% if user.is_authenticated %}
-                        <a href="{% url 'items-list' %}"><i class="fas fa-shopping-bag"></i>
+                        <a href="{% url 'items-list' %}"><i class="fas fa-shopping-bag w3-text-orange"></i>
                             Posts</a>
                         <a href="{% url 'profile-update' %}" class="user">
                             <img src="{{ user.photo.url }}"> {{ user.name }}
                             {% if user.is_rider %}<i class="fas fa-motorcycle"></i>{% endif %}
                         </a>
                         {% else %}
-                        <a href="{% url 'django_registration_register' %}"><i class="fas fa-user-plus"></i>
+                        <a href="{% url 'django_registration_register' %}"><i class="fas fa-user-plus w3-text-pink"></i>
                             Register</a>
-                        <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>
+                        <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt w3-text-green"></i>
                             Login</a>
                         {% endif %}
                     </div>
