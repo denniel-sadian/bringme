@@ -1,5 +1,5 @@
 # BringMe
-A Django project where regular users can post the items they want and have the riders deliver their items to them.
+A Django project where regular users can post the items they want and have the riders deliver their items to them. A project of Mr. Sadian and Ms. Lastica.
 
 You must have a Linux environment. WSL will work just fine. You must have git installed and configured. You must have MailHog. And, of course, Python3.
 How to setup locally:
