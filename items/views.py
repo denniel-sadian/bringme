@@ -17,14 +17,17 @@ from .models import Item
 
 
 class HomeView(TemplateView):
+    """View for the landing page."""
     template_name = 'items/home.html'
 
 
 class AboutView(TemplateView):
+    """View for the about page."""
     template_name = 'items/about.html'
 
 
 class ItemsListView(LoginRequiredMixin, ListView):
+    """View for listing the posts."""
     login_url = reverse_lazy('login')
     context_object_name = 'items'
     paginate_by = 10
@@ -62,11 +65,13 @@ class ItemsListView(LoginRequiredMixin, ListView):
 
 
 class ItemDetailView(LoginRequiredMixin, DetailView):
+    """View for display a single post."""
     login_url = reverse_lazy('login')
     model = Item
 
 
 class ItemCreateView(LoginRequiredMixin, CreateView):
+    """View for posting."""
     login_url = reverse_lazy('login')
     model = Item
     fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
@@ -85,6 +90,7 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
 
 
 class ItemUpdateView(LoginRequiredMixin, UpdateView):
+    """View for updating a post."""
     login_url = reverse_lazy('login')
     model = Item
     fields = ('name', 'description', 'photo', 'expected_price', 'expected_store')
@@ -105,6 +111,7 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class ItemDeleteView(LoginRequiredMixin, DeleteView):
+    """View for deleting a post."""
     login_url = reverse_lazy('login')
     success_url = reverse_lazy('items-list')
     model = Item
@@ -120,6 +127,7 @@ class ItemDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class ItemCloseToggleRedirectView(LoginRequiredMixin, RedirectView):
+    """View for toggling a post."""
     login_url = reverse_lazy('login')
     permanent = False
     query_string = True
@@ -144,6 +152,7 @@ class ItemCloseToggleRedirectView(LoginRequiredMixin, RedirectView):
 
 
 class ItemMarkDeliveredView(LoginRequiredMixin, SingleObjectMixin, View):
+    """View for marking a post as delivered."""
     model = Item
     context_object_name = 'item'
 

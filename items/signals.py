@@ -16,6 +16,7 @@ from accounts.emails import ItemCancelledNotif
 
 @receiver(post_save, sender=Item)
 def notify_users_on_new_post(sender, instance, created, **kwargs):
+    """Signal for notifiying riders that there is a new post."""
     if not created:
         return
     
@@ -24,6 +25,7 @@ def notify_users_on_new_post(sender, instance, created, **kwargs):
 
 @receiver(pre_save, sender=Item)
 def notify_user_on_post(sender, instance, **kwargs):
+    """Signal for notifiying the users about the changes of posts."""
     if not instance.pk:
         return
     

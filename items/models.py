@@ -7,6 +7,7 @@ from accounts.models import CustomUser
 
 
 class Item(models.Model):
+    """Item model. Also known as post."""
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='items')
     name = models.CharField(max_length=255)
     description = models.TextField()

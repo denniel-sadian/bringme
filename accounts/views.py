@@ -17,6 +17,7 @@ from .emails import ActivationEmail
 
 
 class UserRegisterView(RegistrationView):
+    """User registration view."""
     form_class = CustomUserForm
 
     def send_activation_email(self, user):
@@ -26,6 +27,7 @@ class UserRegisterView(RegistrationView):
 
 
 class AccountActivationView(ActivationView):
+    """Account activation view."""
     success_url = reverse_lazy('home')
 
     def activate(self, *args, **kwargs):
@@ -35,6 +37,7 @@ class AccountActivationView(ActivationView):
 
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
+    """View for updating user profile."""
     login_url = reverse_lazy('login')
     success_url = reverse_lazy('profile-update')
     form_class = CustomUserChangeForm
@@ -45,4 +48,5 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
 
 
 class PasswordResetView(PassResetView):
+    """View for sending password reset links."""
     html_email_template_name = 'registration/password_reset_email.html'

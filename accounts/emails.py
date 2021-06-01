@@ -36,6 +36,7 @@ class BaseTemplatedHTMLEmailMessageView(TemplatedHTMLEmailMessageView):
 
 
 class PostInstanceMixin:
+    """Mixin for adding a post instance."""
     
     def __init__(self, post, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -51,6 +52,7 @@ class PostInstanceMixin:
 
 
 class NewPostNotif(PostInstanceMixin, BaseTemplatedHTMLEmailMessageView):
+    """Email sent for new post notifications."""
     subject_template_name = 'accounts/emails/new/subject.txt'
     body_template_name = 'accounts/emails/new/body.txt'
     html_body_template_name = (
@@ -69,6 +71,7 @@ class NewPostNotif(PostInstanceMixin, BaseTemplatedHTMLEmailMessageView):
 
 
 class ClosedPostNotif(PostInstanceMixin, BaseTemplatedHTMLEmailMessageView):
+    """Email sent for closed post notifications."""
     subject_template_name = 'accounts/emails/closed/subject.txt'
     body_template_name = 'accounts/emails/closed/body.txt'
     html_body_template_name = (
@@ -80,6 +83,7 @@ class ClosedPostNotif(PostInstanceMixin, BaseTemplatedHTMLEmailMessageView):
 
 
 class ItemCancelledNotif(PostInstanceMixin, BaseTemplatedHTMLEmailMessageView):
+    """Email sent for cancelled post notifications."""
     subject_template_name = 'accounts/emails/cancelled/subject.txt'
     body_template_name = 'accounts/emails/cancelled/body.txt'
     html_body_template_name = (
@@ -91,6 +95,7 @@ class ItemCancelledNotif(PostInstanceMixin, BaseTemplatedHTMLEmailMessageView):
 
 
 class ItemDeliveredNotif(PostInstanceMixin, BaseTemplatedHTMLEmailMessageView):
+    """Email sent for item delivered notifications."""
     subject_template_name = 'accounts/emails/delivered/subject.txt'
     body_template_name = 'accounts/emails/delivered/body.txt'
     html_body_template_name = (
@@ -102,6 +107,7 @@ class ItemDeliveredNotif(PostInstanceMixin, BaseTemplatedHTMLEmailMessageView):
 
 
 class ActivationEmail(BaseTemplatedHTMLEmailMessageView):
+    """Email sent containing the activation link."""
     subject_template_name = 'accounts/emails/activation/subject.txt'
     body_template_name = 'accounts/emails/activation/body.txt'
     html_body_template_name = (
