@@ -14,14 +14,6 @@ from accounts.emails import ItemDeliveredNotif
 from accounts.emails import ItemCancelledNotif
 
 
-def notify_users(subject, to, html_message):
-    plain_message = strip_tags(html_message)
-    from_email = settings.DEFAULT_FROM_EMAIL
-    if len(to):
-        send_mail(subject, plain_message, from_email, [to],
-                  html_message=html_message, fail_silently=False)
-
-
 @receiver(post_save, sender=Item)
 def notify_users_on_new_post(sender, instance, created, **kwargs):
     if not created:
