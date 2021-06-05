@@ -1,7 +1,7 @@
 -f /usr/share/pip-wheels
 confusable-homoglyphs==3.2.0
 Django==2.2.14
-django-registration==3.1
+django-registration==3.1.2
 django-resized==0.3.11
 django-sendgrid-v5==0.8.1
 django-phonenumber-field==5.0.0
