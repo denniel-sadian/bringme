@@ -1,5 +1,5 @@
 # BringMe
-A Django project where regular users can post the items they want and have the riders deliver their items to them. A project of Mr. Sadian and Ms. Lastica.
+A Django project where regular users can post the items they want and have the riders deliver their items to them. A project of Mr. Sadian.
 
 Website can be found here: https://bringme.pythonanywhere.com
 
